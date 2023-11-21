@@ -1,0 +1,113 @@
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh * (2 / 3)); 
+    overflow: hidden; 
+    
+  }
+  
+  .transparent-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+  }
+  
+  .transparent-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  }
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    
+  }
+  
+  
+  .image:before,.image:after{
+    content:'';
+    position:absolute;
+    left:5%;
+    opacity:0.5;
+  }
+  .image:before{
+    top:0;
+    width:20%;
+    height:100%;
+    -moz-box-shadow: inset 0px 850px 500px -500px #000;
+    -webkit-box-shadow: inset 0px 850px 500px -500px #000;
+    -o-box-shadow: inset 0px 850px 500px -500px #000;
+    box-shadow: inset 0px 850px 500px -500px #000;
+  }
+  
+  
+  
+  
+  
+  /* SEARCH INPUT */
+  
+  
+  .search-overlay {
+    position: absolute;
+    top: 25%; /* Adjust the position from the top */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .search-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 40%; 
+    
+  }
+  
+  .search-input input[type="text"] {
+    width: 80%;
+    padding: 15px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+  }
+  
+  .search-input i.fa {
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .search-line {
+    width: 50%;
+    height: 1px;
+    background-color: #493737;
+    margin-top: 10px; 
+    margin-left: 500px; 
+  
+  }
+  img {
+    width: 140px;
+    height: 140px;
+    border-radius: 80px;
+    margin-bottom: 35px;
+  }
+  
+  .image-text {
+    font-size: 18px; 
+    font-weight: bold; 
+    font-family:'Times New Roman', Times, serif;
+     
+  }
+  .grow:hover {
+    transform: scale(1.10); 
+    transition: transform 0.5s ease; 
+  }
