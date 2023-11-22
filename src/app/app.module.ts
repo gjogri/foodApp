@@ -6,10 +6,17 @@ import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './features/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FeatureModule } from './features/features.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HeaderComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule],
+  declarations: [AppComponent, HeaderComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    HttpClientModule,
+    FeatureModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

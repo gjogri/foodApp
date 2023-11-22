@@ -1,3 +1,16 @@
+export interface Measurement {
+  metric: {
+    amount: number;
+    unitShort: string;
+    unitLong: string;
+  };
+}
+
+export interface ExtendedIngredient {
+  name: string;
+  measures: Measurement;
+}
+
 export class RecipeModel {
   id!: number;
   title!: string;
@@ -8,5 +21,7 @@ export class RecipeModel {
   vegan!: boolean;
   vegetarian!: boolean;
   veryPopular!: boolean;
-  extendedIngredients!: string[];
+  extendedIngredients!: ExtendedIngredient[];
+  instructions!: string;
+  description!: string;
 }
