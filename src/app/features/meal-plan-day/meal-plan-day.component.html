@@ -1,0 +1,33 @@
+
+
+  
+  
+<div class="position-relative">
+    <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" alt="" class="img-fluid">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="form-group text-center">
+        <label for="datepicker" class="datepicker-label  custom-label text-white">Select a day:</label>
+        <input type="date" id="datepicker" name="datepicker" class="form-control" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event)">
+      </div>
+    </div>
+  </div>
+  
+  
+
+  
+  
+<div *ngIf="itemList && itemList.length > 0">
+    <div *ngFor="let item of itemList">
+        <p></p>
+      <div class="item-card" >
+        <!-- <img [src]="'path_to_images/' + item.imageType" [alt]="item.title || 'No title available'" class="item-image"> -->
+        <div class="item-details">
+          <h2>{{ item.title || 'No title available' }}</h2>
+     
+          <p>Servings: {{ item.servings }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

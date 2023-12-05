@@ -5,6 +5,7 @@ import {
   Router,
 } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
+
 import { recipeService } from 'src/app/services/recipeService';
 @Component({
   selector: 'app-recipe',
@@ -27,6 +28,7 @@ export class RecipeComponent implements OnInit {
     this.currentId === 0
       ? this.router.navigate(['/home']) // home for now
       : this.getRecipeById(this.currentId || 0);
+    console.log(this.currentId);
   }
 
   getRecipeById(id: number) {
@@ -34,9 +36,25 @@ export class RecipeComponent implements OnInit {
       .getRecipeById(id)
       .subscribe((singleRecipe: RecipeModel) => {
         this.recipe = singleRecipe;
-        console.log('Fetched recipe:', this.recipe); // Check to see if the recipe data is logged correctly
-        console.log('Fetched recipe:', this.recipe.extendedIngredients);
-        console.log('Fetched recipe:', this.recipe.instructions);
+        this.recipe &&
+          this.recipe.instructions &&
+          (this.recipe.instructions = this.stripHtmlTags(
+            this.recipe.instructions
+          ));
+
+        console.log('Fetched recipe:', this.recipe);
       });
+  }
+  stripHtmlTags(html: string): string {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  }
+
+  addToFavorites() {
+    console.log('ADD TO FAVORITES', this.currentId);
+    if (this.recipe) {
+      this.recipe.isFavorite = !this.recipe.isFavorite;
+      console.log(this.recipe.isFavorite);
+    }
   }
 }

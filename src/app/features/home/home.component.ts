@@ -11,11 +11,14 @@ import { recipeService } from 'src/app/services/recipeService';
 export class HomeComponent implements OnInit {
   recipe: RecipeModel | undefined;
   randomRecipes: RecipeModel[] = [];
+  weekPlanMeal: any | undefined;
+
   constructor(private recipeService: recipeService, private router: Router) {}
 
   ngOnInit(): void {
     this.getRecipe();
     this.getRandomRecipes(10);
+    this.getWeekPlanDay();
   }
 
   getRecipe(): void {
@@ -47,5 +50,16 @@ export class HomeComponent implements OnInit {
   getRecipeId(id: number) {
     this.router.navigate(['/recipes', id]);
     console.log('ID:', id);
+  }
+
+  getWeekPlanDay() {
+    this.recipeService.getWeekPlanMeal().subscribe(
+      (data) => {
+        console.log('Fetched week plan:', data);
+      },
+      (error) => {
+        console.error('Error fetching week plan:', error);
+      }
+    );
   }
 }

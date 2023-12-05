@@ -1,0 +1,58 @@
+.datepicker-label {
+    font-size: 28px;
+    color: #9e1a1a!important;
+    font-weight:500 !important;
+  }
+  
+  input[type="date"] {
+    padding: 12px; /* Increase input padding */
+    font-size: 16px; /* Increase input font size */
+    border-radius: 6px;
+    /* Other input styles */
+  }
+ 
+  .position-relative {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .position-absolute {
+    position: absolute;
+  }
+  
+  .top-0 {
+    top: 0;
+  }
+  
+  .start-0 {
+    left: 0;
+  }
+  
+  .w-100 {
+    width: 100%;
+  }
+  
+  .h-100 {
+    height: 100%;
+  }
+  
+  .img-fluid {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .form-group {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @media (max-width: 768px) {
+    .position-relative {
+      height: 60vh; /* Adjust the height for smaller screens */
+    }
+  }
+  

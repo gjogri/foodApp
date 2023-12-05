@@ -1,21 +1,79 @@
- <div *ngIf="recipe" class="max-width-container" style="max-width: 1200px; margin: 0 auto;">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ recipe.title }}</mat-card-title>
-        <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image [src]="recipe.image" alt="{{ recipe.title }}" />
-      <mat-card-content>
-        <p>{{ recipe.instructions }}</p>
-        <h4>Ingredients</h4>
+<!-- <div class="split-background"> 
+  <div *ngIf="recipe" class="max-width-container">
+
+    <h2>{{ recipe.title }}</h2>
+    <div class="cover-photo">
+      <img [src]="recipe.image" alt="{{ recipe.title }}" />
+    </div>
+  
+  
+  
+    <div class="content-container">
+      <div class="column">
+        <h3>Ingredients</h3>
         <ul>
-          <li *ngFor="let ingredient of recipe.extendedIngredients">{{ ingredient.name  }} {{ingredient.measures.metric.amount}}{{ingredient.measures.metric.unitShort}}</li>
+          <li *ngFor="let ingredient of recipe.extendedIngredients">
+            {{ ingredient.name }}: {{ ingredient.measures.metric.amount }} {{ ingredient.measures.metric.unitShort}}
+          </li>
         </ul>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Save</button>
-        <button mat-button>Share</button>
-      </mat-card-actions>
-    </mat-card>
+      </div>
+      <div class="column">
+        <h3>Description</h3>
+        <p>{{ recipe.description }}</p>
+      </div>
+    </div>
   </div>
+  
+</div> -->
+
+
+
+
+<div class="split-background">
+    <div class="left-pane">
+      <div class="max-width-container">
+        <h2 class="font-style">{{ recipe?.title }}</h2>
+        <h2 class="font-style">STRAWBERRY CAKE</h2>
+        <div class="cover-photo">
+            <img [src]="recipe?.image" alt="{{ recipe?.title }}" class="recipe-image" />
+        </div>
+        <h2 class="font-style">
+            <i class="material-icons">schedule</i>  {{ recipe?.readyInMinutes }} 
+          </h2>
+          <h2 class="font-style">
+            <i class="material-icons">restaurant</i>  {{ recipe?.servings }}
+          </h2>
+      </div>
+    </div>
+  
+    <div class="right-pane">
+      <div class="max-width-container">
+        <div class="content-container">
+          <div class="column">
+            <h3>Ingredients</h3>
+            <ul>
+              <li *ngFor="let ingredient of recipe?.extendedIngredients">
+                {{ ingredient.name }}: {{ ingredient.measures.metric.amount }} {{ ingredient.measures.metric.unitShort }}
+              </li>
+            </ul>
+        
+            <h3>Description</h3>
+            <p>{{ recipe?.instructions}}</p>
+           
+           
+          </div>
+        </div>
+        <button mat-icon-button
+        color="white"
+        class="heart-button"
+        aria-label="Add to favorites"
+        [class.favorited]="recipe?.isFavorite"
+        (click)="addToFavorites()">
+  <mat-icon>{{ recipe?.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+</button>
+      </div>
+      
+    </div>
     
+  </div>
+  
