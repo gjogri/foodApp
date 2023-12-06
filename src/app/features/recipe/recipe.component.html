@@ -1,39 +1,8 @@
-<!-- <div class="split-background"> 
-  <div *ngIf="recipe" class="max-width-container">
-
-    <h2>{{ recipe.title }}</h2>
-    <div class="cover-photo">
-      <img [src]="recipe.image" alt="{{ recipe.title }}" />
-    </div>
-  
-  
-  
-    <div class="content-container">
-      <div class="column">
-        <h3>Ingredients</h3>
-        <ul>
-          <li *ngFor="let ingredient of recipe.extendedIngredients">
-            {{ ingredient.name }}: {{ ingredient.measures.metric.amount }} {{ ingredient.measures.metric.unitShort}}
-          </li>
-        </ul>
-      </div>
-      <div class="column">
-        <h3>Description</h3>
-        <p>{{ recipe.description }}</p>
-      </div>
-    </div>
-  </div>
-  
-</div> -->
-
-
-
 
 <div class="split-background">
     <div class="left-pane">
       <div class="max-width-container">
         <h2 class="font-style">{{ recipe?.title }}</h2>
-        <h2 class="font-style">STRAWBERRY CAKE</h2>
         <div class="cover-photo">
             <img [src]="recipe?.image" alt="{{ recipe?.title }}" class="recipe-image" />
         </div>

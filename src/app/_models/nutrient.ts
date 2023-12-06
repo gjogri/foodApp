@@ -1,4 +1,4 @@
-export interface Nutrition {
+export interface Nutrient {
   amount: number;
   name: string;
   percentOfDailyNeeds: number;

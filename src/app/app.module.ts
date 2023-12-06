@@ -7,6 +7,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './features/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureModule } from './features/features.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -16,6 +17,7 @@ import { FeatureModule } from './features/features.module';
     SharedModule,
     HttpClientModule,
     FeatureModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -10,9 +10,10 @@ import { MealPlanDayComponent } from './meal-plan-day/meal-plan-day.component';
 import { ComparableProductsComponent } from './comparable-products/comparable-products.component';
 import { ProductInformationComponent } from './product-information/product-information.component';
 import { FormsModule } from '@angular/forms';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -29,8 +30,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     RouterModule,
     FormsModule,
     MatInputModule,
-
+    MatProgressBarModule,
     MatNativeDateModule,
+    NgxChartsModule,
   ],
   exports: [],
 })
