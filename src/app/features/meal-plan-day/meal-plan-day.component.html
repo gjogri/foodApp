@@ -5,29 +5,69 @@
 <div class="position-relative">
     <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" alt="" class="img-fluid">
     <div class="position-absolute top-50 start-50 translate-middle">
-      <div class="form-group text-center">
+      <div class="form-group input-field">
         <label for="datepicker" class="datepicker-label  custom-label text-white">Select a day:</label>
-        <input type="date" id="datepicker" name="datepicker" class="form-control" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event)">
+        <input type="date" id="datepicker" name="datepicker" class="form-control custom-input" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event)">
       </div>
     </div>
   </div>
   
+  <!-- <ngx-charts-bar-horizontal
+  [results]="chartData"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+></ngx-charts-bar-horizontal> -->
+ 
+  <br>
+   <div class="item-card-container" *ngIf="isSelectedDate">
+    <div class="row">
+          <div class="col">
+            <h2 class="meal-title">Breakfast</h2> 
+          <div *ngFor="let item of breakfastItems" (click)="getRecipeInformation(item.value.id)">
+              <div class="recipe-card" matRipple>
+                <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
+                  <div class="overlay">
+                      <h4 class="recipe-title">{{ item.value.title }}</h4>
+                     <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn" >View More</button>
+                 </div>
+              </div>
+          </div>
+         </div>
+
+         <div class="col">
+            <h2 class="meal-title">Lunch</h2> 
+          <div *ngFor="let item of lunchItems" (click)="getRecipeInformation(item.value.id)">
+              <div class="recipe-card" matRipple>
+                <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
+                  <div class="overlay">
+                      <h4 class="recipe-title">{{ item.value.title }}</h4>
+                     <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn" >View More</button>
+                 </div>
+              </div>
+          </div>
+         </div>
   
+         <div class="col">
+            <h2 class="meal-title">Dinner</h2> 
+          <div *ngFor="let item of dinnerItems" (click)="getRecipeInformation(item.value.id)">
+              <div class="recipe-card" matRipple>
+                <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
+                  <div class="overlay">
+                      <h4 class="recipe-title">{{ item.value.title }}</h4>
+                     <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn" >View More</button>
+                 </div>
+              </div>
+          </div>
+         </div>
+    </div>
+    
+  </div>
+
 
   
-  
-<div *ngIf="itemList && itemList.length > 0">
-    <div *ngFor="let item of itemList">
-        <p></p>
-      <div class="item-card" >
-        <!-- <img [src]="'path_to_images/' + item.imageType" [alt]="item.title || 'No title available'" class="item-image"> -->
-        <div class="item-details">
-          <h2>{{ item.title || 'No title available' }}</h2>
-     
-          <p>Servings: {{ item.servings }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
   

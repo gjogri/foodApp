@@ -1,6 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { chartData } from 'src/app/_models/chartData';
 import { Items } from 'src/app/_models/items';
-import { Nutrition } from 'src/app/_models/nutrition';
+import { Nutrient } from 'src/app/_models/nutrient';
+
 import { recipeService } from 'src/app/services/recipeService';
 
 @Component({
@@ -9,13 +12,23 @@ import { recipeService } from 'src/app/services/recipeService';
   styleUrls: ['./meal-plan-day.component.scss'],
 })
 export class MealPlanDayComponent implements OnInit {
-  nutrition: Nutrition | undefined;
-  itemList: Items[] = [];
-  allData: any[] = [];
+  nutrient: Nutrient[] = [];
   selectedDate: string | null = null;
+  isSelectedDate = false;
+  breakfastItems: Items[] = [];
+  lunchItems: Items[] = [];
+  dinnerItems: Items[] = [];
+  chartData: chartData[] = [];
+  xAxisLabel = 'Macro Nutrition';
+  yAxisLabel = 'Population';
+  showXAxis = true;
+  showYAxis = true;
+  showXAxisLabel = true;
+  showYAxisLabel = true;
   constructor(
     private recipeService: recipeService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
   ngOnInit(): void {}
 
@@ -23,12 +36,36 @@ export class MealPlanDayComponent implements OnInit {
     if (this.selectedDate) {
       this.recipeService.getMealPlanDay(this.selectedDate).subscribe(
         (data: any) => {
-          console.log('test');
-          console.log('all data', data);
-          data.items.forEach((item: any) => {
-            this.itemList.push(item.value);
-            console.log(this.itemList);
-            this.getRecipeInformation(22457672);
+          this.nutrient.push(data.nutritionSummary.nutrients);
+          data.nutritionSummary.nutrients.forEach((nutrient: chartData) => {
+            console.log(nutrient);
+            // if (nutrient.carbohydrate.name === 'Carbohydrate') {
+            //   console.log(
+            //     'nutrient.carbohydrate.name',
+            //     nutrient.carbohydrate.name
+            //   );
+            // }
+            // this.chartData.push({
+            //   name: nutrient.name,
+            //    percentOfDailyNeeds: nutrient.percentOfDailyNeeds,
+            //  });
+          });
+          console.log(' chartData:', this.chartData);
+          //
+
+          data.items.forEach((item: Items) => {
+            this.recipeService
+              .getRecipeById(item.value.id)
+              .subscribe((recipe) => {
+                item.imageUrl = recipe.image;
+              });
+            if (item.slot === 1) {
+              this.breakfastItems.push(item);
+            } else if (item.slot === 2) {
+              this.lunchItems.push(item);
+            } else {
+              this.dinnerItems.push(item);
+            }
           });
         },
         (error: any) => {
@@ -36,38 +73,32 @@ export class MealPlanDayComponent implements OnInit {
         }
       );
 
-      console.log('this.items', this.itemList);
       this.cdr.detectChanges();
     }
   }
   onDateSelected(event: any) {
-    this.itemList = [];
+    this.breakfastItems = [];
+    this.lunchItems = [];
+    this.dinnerItems = [];
     this.selectedDate = event.target.value;
+    this.isSelectedDate = true;
 
     this.getMealPlanDay();
   }
 
   getRecipeInformation(recipeId: number) {
-    this.recipeService
-      .getRecipeInformation(recipeId)
-      .subscribe((data) => console.log(data));
+    this.router.navigate(['/recipes', recipeId]);
   }
+
+  // chartData: chartData[] = [
+  //   {
+  //     name: 'Germany',
+  //     value: 8940000,
+  //   },
+  //   {
+  //     name: 'USA',
+  //     value: 5000000,
+  //   },
+  //   // Add more data...
+  // ];
 }
-
-// console.log('ITEMLIST', this.itemList);
-// if (data.items && data.items.length > 0) {
-//   data.items.forEach((item: any) => {
-//     this.itemList.push(item.value);
-//     this.cdr.detectChanges();
-//   });
-//   console.log('All Items:', this.itemList);
-// } else {
-//   console.log('No items found in the response.');
-// }
-// this.nutrition = data.nutritionSummary.nutrients.find(
-//   (nutrient: any) => nutrient.name === 'Calories'
-// );
-
-// this.nutrition = data.nutritionSummary.nutrients.find(
-//   (nutrient: any) => nutrient.name === 'Calories'
-// );
