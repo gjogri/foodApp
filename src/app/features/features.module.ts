@@ -14,6 +14,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatChipsModule } from '@angular/material/chips';
+import { BurgerComponent } from './burger/burger.component';
+// import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -21,6 +25,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MealPlanDayComponent,
     ComparableProductsComponent,
     ProductInformationComponent,
+    BurgerComponent,
   ],
   imports: [
     MatGridListModule,
@@ -33,6 +38,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatProgressBarModule,
     MatNativeDateModule,
     NgxChartsModule,
+    MatChipsModule,
   ],
   exports: [],
 })

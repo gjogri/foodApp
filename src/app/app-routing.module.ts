@@ -5,6 +5,8 @@ import { RecipeComponent } from './features/recipe/recipe.component';
 import { ComparableProductsComponent } from './features/comparable-products/comparable-products.component';
 import { MealPlanDayComponent } from './features/meal-plan-day/meal-plan-day.component';
 import { ProductInformationComponent } from './features/product-information/product-information.component';
+import { ErrorDialogComponent } from './shared/error-dialog/error-dialog.component';
+import { BurgerComponent } from './features/burger/burger.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'comparable-products', component: ComparableProductsComponent },
   { path: 'meal-plan-day', component: MealPlanDayComponent },
   { path: 'product-information', component: ProductInformationComponent },
+  { path: 'error-dialog', component: ErrorDialogComponent },
+  { path: 'burger', component: BurgerComponent },
   { path: '**', component: HomeComponent },
 ];
 

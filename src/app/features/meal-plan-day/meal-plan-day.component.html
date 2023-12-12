@@ -1,31 +1,29 @@
 
 
   
-  
 <div class="position-relative">
     <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" alt="" class="img-fluid">
     <div class="position-absolute top-50 start-50 translate-middle">
       <div class="form-group input-field">
         <label for="datepicker" class="datepicker-label  custom-label text-white">Select a day:</label>
-        <input type="date" id="datepicker" name="datepicker" class="form-control custom-input" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event)">
+        <input  type="date" id="datepicker" name="datepicker" class="form-control custom-input" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event)" >
       </div>
     </div>
+
+  </div  >  
+  <div *ngIf="isSelectedDate  "> 
+  <div class="centered-chips"  >
+    <div *ngIf="isSelectedDate ">
+      <mat-chip-listbox aria-label="meal-plan" class="mat-chip" >
+        <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Breakfast')">Breakfast</mat-chip-option>
+        <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Lunch')"color="warn">Lunch</mat-chip-option>
+        <mat-chip-option class="mat-chip-option"   (click)="toggleSelection('Dinner')" color="accent" >Dinner</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
   </div>
-  
-  <!-- <ngx-charts-bar-horizontal
-  [results]="chartData"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-></ngx-charts-bar-horizontal> -->
- 
-  <br>
-   <div class="item-card-container" *ngIf="isSelectedDate">
-    <div class="row">
-          <div class="col">
+    <div class="item-card-container" *ngIf="isSelectedDate">
+   
+         <div class="col" *ngIf="isSelectedBreakfast || selectedAllMeal ">
             <h2 class="meal-title">Breakfast</h2> 
           <div *ngFor="let item of breakfastItems" (click)="getRecipeInformation(item.value.id)">
               <div class="recipe-card" matRipple>
@@ -36,22 +34,27 @@
                  </div>
               </div>
           </div>
-         </div>
+         </div> 
 
-         <div class="col">
-            <h2 class="meal-title">Lunch</h2> 
-          <div *ngFor="let item of lunchItems" (click)="getRecipeInformation(item.value.id)">
+         <div class="col" *ngIf="isSelectedLunch || selectedAllMeal">
+          <h2 class="meal-title">Lunch</h2>
+          <div class="recipe-container">
+            <div *ngFor="let item of lunchItems" (click)="getRecipeInformation(item.value.id)">
               <div class="recipe-card" matRipple>
-                <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
-                  <div class="overlay">
-                      <h4 class="recipe-title">{{ item.value.title }}</h4>
-                     <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn" >View More</button>
-                 </div>
+                <div class="image-container">
+                  <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
+                </div>
+                <div class="overlay">
+                  <h4 class="recipe-title">{{ item.value.title }}</h4>
+                  <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn">View More</button>
+                </div>
               </div>
+            </div>
           </div>
-         </div>
+        </div>
+        
   
-         <div class="col">
+        <div class="col" *ngIf="isSelectedDinner || selectedAllMeal">
             <h2 class="meal-title">Dinner</h2> 
           <div *ngFor="let item of dinnerItems" (click)="getRecipeInformation(item.value.id)">
               <div class="recipe-card" matRipple>
@@ -63,11 +66,22 @@
               </div>
           </div>
          </div>
-    </div>
-    
+    </div> 
+
+
+    <div class="card charts-margins " *ngIf="isSelectedDate">
+      <div class="card-header daily-summary"> Daily Summary </div>
+      <div class="card-block" > 
+     <ngx-charts-bar-horizontal 
+    [results]="selectedChartData"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+  ></ngx-charts-bar-horizontal> 
+  </div>
   </div>
 
-
-  
-
-  
+</div>
