@@ -12,13 +12,15 @@ export class HomeComponent implements OnInit {
   recipe: RecipeModel | undefined;
   randomRecipes: RecipeModel[] = [];
   weekPlanMeal: any | undefined;
-
+  todayDate: string = '';
   constructor(private recipeService: recipeService, private router: Router) {}
 
   ngOnInit(): void {
     this.getRecipe();
     this.getRandomRecipes(10);
     this.getWeekPlanDay();
+    this.todayDate = new Date().toISOString().split('T')[0];
+    this.getRecipeByIngredient('cake', 300);
   }
 
   getRecipe(): void {
@@ -38,8 +40,6 @@ export class HomeComponent implements OnInit {
     this.recipeService.getRandomRecipes(numberOfRecipe).subscribe(
       (recipes: RecipeModel[]) => {
         this.randomRecipes = recipes;
-        console.log('RANDOM RECIPES:', this.randomRecipes[0].id);
-        console.log('RANDOM RECIPES:', this.randomRecipes.length);
       },
       (error) => {
         console.error('Error fetching random recipes:', error);
@@ -61,5 +61,13 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching week plan:', error);
       }
     );
+  }
+
+  getRecipeByIngredient(ingredient: string, numberOfRecipes: number) {
+    this.recipeService
+      .getRecipeByIngredient(ingredient, numberOfRecipes)
+      .subscribe((x) => {
+        console.log('new Recipe:', x);
+      });
   }
 }

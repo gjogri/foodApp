@@ -16,13 +16,76 @@
 <br>
 <br>
 
+
+
+<div class="square-container">
+  <div class="row">
+    <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'burger',}"> 
+      <div class="wrap-element"> 
+      <span class="material-icons">
+      lunch_dining
+      </span>
+      <div class="icon-name">Burger's</div>
+      <div class="recipe-count">56 Recipes</div>
+    </div>
+    </div>
+    <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'pizza',}">
+      <div class="wrap-element"> 
+      <span class="material-icons">
+      local_pizza
+      </span> 
+      <p class="icon-name">Pizza's</p>
+      <div class="recipe-count">56 Recipes</div>
+      </div>
+    </div>
+    <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'cake',}">
+      <div class="wrap-element"> 
+       <span class="material-icons"> cake </span>
+        <div class="icon-name">Cake's</div>
+        <div class="recipe-count">56 Recipes</div>
+       </div>
+      </div>
+    <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'pasta',}">  
+      <div class="wrap-element"> 
+      <span class="material-icons"> dinner_dining </span>
+       <div class="icon-name">Pasta</div>
+       <div class="recipe-count">56 Recipes</div>
+       </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'vegan',}">  
+      <div class="wrap-element"> 
+        <span class="material-icons">
+          spa
+          </span>
+       <div class="icon-name">Vegan</div>
+       <div class="recipe-count">56 Recipes</div>
+       </div>
+      </div>
+    <div class="square"> <i class='fas fa-hamburger'></i></div>
+    <div class="square"> <i class='fas fa-hamburger'></i></div>
+    <div class="square"> <i class='fas fa-hamburger'></i></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
     <div class="container">
         <div class="row">
           <div class="col-md-4 text-center grow" [routerLink]="['/comparable-products']">
             <img src="https://cdn1.vectorstock.com/i/1000x1000/14/45/healthy-food-with-nutritional-facts-vector-21371445.jpg" alt="Product Information Image">
             <p class="image-text">GET PRODUCT INFORMATION</p>   
           </div>
-          <div class="col-md-4 text-center grow" [routerLink]="['/meal-plan-day']">
+          <div class="col-md-4 text-center grow" [routerLink]="['/meal-plan-day']"  >
             <img src="https://wonderfeetcreativeacademy.com/wp-content/uploads/2019/03/Healthy-Meal-Plan-for-kids.jpg" alt="Meal Plan Day Image" >
             <p  class="image-text ">GET MEAL PLAN DAY</p>
           </div>

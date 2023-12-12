@@ -167,3 +167,85 @@
     color: white;
   }
   
+
+
+  // NEWW 
+
+  .square-container {
+    display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: -150px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: -15px;
+    margin-left: -15px;
+    gap: 10px;
+  }
+  
+  .square {
+    width: 240px;
+    height: 240px;
+    margin: 8px;
+    background-color: #f7f4ee;
+    border-radius: 3px;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+   
+  }
+  .material-icons {
+    font-size: 60px; 
+    color: #85b72c;
+  }
+  .icon-name {
+    margin-top: 20px; 
+    font-size: larger;
+    font-weight: 500;
+  }
+  .recipe-count {
+    margin-top: 25px;
+    color: #888; 
+    font-size: 14px; 
+    border: 1px solid  #f7f4ee ;
+    padding: 2px 10px;
+    border-radius: 8px;
+    background-color: #dde6ce;
+    color:#85b72c;
+    font-size: 12px ;
+  }
+
+  .wrap-element:hover{
+    background-color: #99c946;
+    width: 85%;  
+    height: 85%;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: .6s;
+  }
+  .wrap-element:hover .material-icons {
+    color: white; 
+  }
+  .wrap-element:hover .recipe-count {
+    background-color: white; 
+  }
+
+  .wrap-element:hover .icon-name {
+    color: white; 
+  }

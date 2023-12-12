@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatChipsModule } from '@angular/material/chips';
-import { BurgerComponent } from './burger/burger.component';
+import { FoodItemComponent } from './foodItem/foodItem.component';
 // import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { BurgerComponent } from './burger/burger.component';
     MealPlanDayComponent,
     ComparableProductsComponent,
     ProductInformationComponent,
-    BurgerComponent,
+    FoodItemComponent,
   ],
   imports: [
     MatGridListModule,

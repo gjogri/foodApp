@@ -1,0 +1,27 @@
+<div>
+    <app-carousel></app-carousel>
+  </div>
+  <div>
+ <div class="square-container">
+    <div class="row">
+      <div class="square" *ngFor="let burger of burgers" > 
+        <div class="wrap-element"> 
+          <span class="material-icons">
+            lunch_dining
+          </span>
+          <div>
+            <img [src]="burger.image"  class='burger-img'alt="Burger Image">
+          </div>
+          <div class="icon-name">{{ burger.title }}</div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+<!-- <img [src]="burger.image" alt="Burger Image">
+<div class="icon-name">{{ burger.title }}</div>
+<div class="full-img">
+  <img [src]="burger.image" alt="Full Burger Image">
+</div> -->
