@@ -1,27 +1,28 @@
-<div>
+ <div>
     <app-carousel></app-carousel>
   </div>
   <div>
  <div class="square-container">
     <div class="row">
-      <div class="square" *ngFor="let burger of burgers" > 
-        <div class="wrap-element"> 
+      <div class="square" *ngFor="let recipe of recipes.slice(startIndex,endIndex)" > 
+        <div class="wrap-element" > 
           <span class="material-icons">
             lunch_dining
           </span>
           <div>
-            <img [src]="burger.image"  class='burger-img'alt="Burger Image">
+            <img [src]="recipe.image"  class='burger-img'alt="recipe Image" (click)="getRecipeInformation(recipe.id)">
           </div>
-          <div class="icon-name">{{ burger.title }}</div>
+          <div class="icon-name">{{ recipe.title }}</div>
         </div>
       </div>
     </div>
   </div> 
+</div> 
+
+<div> 
+<mat-paginator [length]="recipes.length"
+    [pageSize]="24"
+    [pageSizeOptions]="[24,36,42]"
+    (page)="OnPageChange($event)"
+      ></mat-paginator>
 </div>
-
-
-<!-- <img [src]="burger.image" alt="Burger Image">
-<div class="icon-name">{{ burger.title }}</div>
-<div class="full-img">
-  <img [src]="burger.image" alt="Full Burger Image">
-</div> -->

@@ -31,7 +31,7 @@ export class MealPlanDayComponent implements OnInit {
   showYAxis = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-
+  todayDate: string = '';
   selectedAllMeal: boolean = true;
   isSelectedBreakfast: boolean = false;
   isSelectedLunch: boolean = false;
@@ -51,18 +51,33 @@ export class MealPlanDayComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       console.log('params', params);
-      this.selectedDate = params['date'];
-      console.log('this.selectedDate on:::', this.selectedDate);
+      this.todayDate = params['date'];
     });
-    console.log('TEST oN INIT ');
-    this.newFunction(this.selectedDate);
-    console.log('TEST oN INIT ');
+    this.newFunction(this.todayDate);
   }
 
+  onDateSelected(event: any) {
+    console.log('event on SELECTED', event.value);
+    this.todayDate = event.value;
+    this.newFunction(this.todayDate);
+    console.log(' this.selectedDate!!!', this.todayDate);
+  }
+
+  newFunction(date: string) {
+    console.log('inNewFunction', date);
+    this.breakfastItems = [];
+    this.lunchItems = [];
+    this.dinnerItems = [];
+    this.updateQueryParams(date);
+    this.recipeService.setDate(date);
+    this.isSelectedDate = true;
+    this.updateSelectedChartData();
+    this.getMealPlanDay();
+    this.cdr.detectChanges();
+  }
   getMealPlanDay() {
-    console.log('Get meal plan day ', this.selectedDate);
-    if (this.selectedDate) {
-      this.recipeService.getMealPlanDay(this.selectedDate).subscribe(
+    if (this.todayDate) {
+      this.recipeService.getMealPlanDay(this.todayDate).subscribe(
         (data: any) => {
           console.log('data.breakfast AFTER', data);
           this.chartDataSummary = this.filterChartData(data.nutritionSummary);
@@ -104,36 +119,6 @@ export class MealPlanDayComponent implements OnInit {
       );
     }
   }
-  onDateSelected(event: any) {
-    // console.log('this.selectedDate on Selected:', this.selectedDate);
-    // this.breakfastItems = [];
-    // this.lunchItems = [];
-    // this.dinnerItems = [];
-    this.selectedDate = event.target.value;
-    this.newFunction(this.selectedDate);
-    // this.updateQueryParams(this.selectedDate);
-    console.log(' this.selectedDate', this.selectedDate);
-    // this.recipeService.setDate(this.selectedDate);
-    // this.isSelectedDate = true;
-    // this.updateSelectedChartData();
-    // console.log('TEST');
-    // this.getMealPlanDay();
-    // this.cdr.detectChanges();
-  }
-
-  newFunction(date: string) {
-    this.breakfastItems = [];
-    this.lunchItems = [];
-    this.dinnerItems = [];
-    this.updateQueryParams(date);
-    this.recipeService.setDate(date);
-    this.isSelectedDate = true;
-    this.updateSelectedChartData();
-    console.log('TEST');
-    this.getMealPlanDay();
-    this.cdr.detectChanges();
-  }
-
   getRecipeInformation(recipeId: number) {
     this.router.navigate(['/recipes', recipeId], {
       queryParams: { date: this.selectedDate },

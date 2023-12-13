@@ -63,12 +63,36 @@
        <div class="recipe-count">56 Recipes</div>
        </div>
       </div>
-    <div class="square"> <i class='fas fa-hamburger'></i></div>
-    <div class="square"> <i class='fas fa-hamburger'></i></div>
-    <div class="square"> <i class='fas fa-hamburger'></i></div>
+      <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'breakfast',}">  
+        <div class="wrap-element"> 
+          <span class="material-icons">
+            bakery_dining
+            </span>
+         <div class="icon-name">Breakfast</div>
+         <div class="recipe-count">56 Recipes</div>
+         </div>
+        </div>
+        <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'shakes',}">  
+          <div class="wrap-element"> 
+            <span class="material-icons">
+              free_breakfast
+              </span>
+           <div class="icon-name">Shakes</div>
+           <div class="recipe-count">56 Recipes</div>
+           </div>
+          </div>
+        <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'healthy',}">  
+          <div class="wrap-element"> 
+            <span class="material-icons">
+              food_bank
+              </span>
+           <div class="icon-name">Healthy</div>
+           <div class="recipe-count">56 Recipes</div>
+           </div>
+          </div>
+    
   </div>
 </div>
-
 
 
 
@@ -85,7 +109,7 @@
             <img src="https://cdn1.vectorstock.com/i/1000x1000/14/45/healthy-food-with-nutritional-facts-vector-21371445.jpg" alt="Product Information Image">
             <p class="image-text">GET PRODUCT INFORMATION</p>   
           </div>
-          <div class="col-md-4 text-center grow" [routerLink]="['/meal-plan-day']"  >
+          <div class="col-md-4 text-center grow" [routerLink]="['/meal-plan-day']"   [queryParams]="{ date:  todayDate}">
             <img src="https://wonderfeetcreativeacademy.com/wp-content/uploads/2019/03/Healthy-Meal-Plan-for-kids.jpg" alt="Meal Plan Day Image" >
             <p  class="image-text ">GET MEAL PLAN DAY</p>
           </div>

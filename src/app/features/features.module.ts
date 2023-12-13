@@ -16,7 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatChipsModule } from '@angular/material/chips';
 import { FoodItemComponent } from './foodItem/foodItem.component';
-// import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,8 @@ import { FoodItemComponent } from './foodItem/foodItem.component';
     MatNativeDateModule,
     NgxChartsModule,
     MatChipsModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   exports: [],
 })

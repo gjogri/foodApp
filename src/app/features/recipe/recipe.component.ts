@@ -57,21 +57,34 @@ export class RecipeComponent implements OnInit {
   }
 
   addToFavorites() {
-    console.log('ADD TO FAVORITES', this.currentId);
     if (this.recipe) {
       this.recipe.isFavorite = !this.recipe.isFavorite;
       console.log(this.recipe.isFavorite);
     }
   }
 
-  returnBackToMealPlan(): void {
-    this.route.queryParams.subscribe((params) => {
-      console.log('params', params);
-      this.mealPlanDayDate = params['date'];
-      console.log('this.selectedDate on BACK:', this.mealPlanDayDate);
-    });
-    this.router.navigate(['/meal-plan-day'], {
-      queryParams: { date: this.mealPlanDayDate },
-    });
+  // returnBackToMealPlan(): void {
+  //   this.route.queryParams.subscribe((params) => {
+  //     console.log('params', params);
+  //     this.mealPlanDayDate = params['date'];
+  //     console.log('this.selectedDate on BACK:', this.mealPlanDayDate);
+  //   });
+  //   this.router.navigate(['/meal-plan-day'], {
+  //     queryParams: { date: this.mealPlanDayDate },
+  //   });
+  // }
+
+  navigateBack() {
+    const queryParams = this.route.snapshot.queryParams;
+
+    if (queryParams.hasOwnProperty('date')) {
+      // 'date' parameter exists, navigate to meal-plan-day with the existing date
+      this.router.navigate(['/meal-plan-day'], {
+        queryParams: { date: queryParams['date'] },
+      });
+    } else {
+      // 'date' parameter doesn't exist, navigate back or to another route
+      this.location.back();
+    }
   }
 }

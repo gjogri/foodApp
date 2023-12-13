@@ -6,7 +6,7 @@
     <div class="position-absolute top-50 start-50 translate-middle">
       <div class="form-group input-field">
         <label for="datepicker" class="datepicker-label  custom-label text-white">Select a day:</label>
-        <input  type="date" id="datepicker" name="datepicker" class="form-control custom-input" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event)" >
+        <input  type="date" id="datepicker" name="datepicker" class="form-control custom-input" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event.target)" >
       </div>
     </div>
 

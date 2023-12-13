@@ -1,51 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { recipeService } from 'src/app/services/recipeService';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-foodItem',
   templateUrl: './foodItem.component.html',
   styleUrls: ['./foodItem.component.scss'],
 })
 export class FoodItemComponent implements OnInit {
-  burgers: any[] = [];
+  recipes: any[] = [];
   category: string | null = null;
-  numberOfRecipes: number = 300;
-
+  numberOfRecipes: number = 999;
+  pageSlice: any[] = [];
+  startIndex = 0;
+  endIndex = 24;
+  pageIndex = 1;
   constructor(
     private recipeService: recipeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    console.log('this.numberOfRecipes ON INIT', this.numberOfRecipes);
     this.route.queryParams.subscribe((params) => {
       this.category = params['category'] || null;
       if (this.category) {
+        console.log('onInit:', this.numberOfRecipes);
         this.getRecipes(this.category, this.numberOfRecipes);
       }
     });
-    console.log(this.category);
-    console.log(this.numberOfRecipes);
   }
 
   getRecipes(ingredient: string, numberOfRecipes: number) {
     this.recipeService
       .getRecipeByIngredient(ingredient, numberOfRecipes)
       .subscribe(
-        (recipes: any) => {
-          this.numberOfRecipes = recipes.totalResults;
-          console.log('TTT', this.numberOfRecipes);
+        (recipe: any) => {
+          console.log('Recipes', recipe);
+          this.numberOfRecipes = recipe.totalResults;
+          console.log('this.number.ofRecipes', this.numberOfRecipes);
           if (this.numberOfRecipes > 0) {
-            recipes.results.forEach((x: RecipeModel[]) => {
-              this.burgers.push(x);
+            recipe.results.forEach((items: RecipeModel[]) => {
+              this.recipes.push(items);
+              console.log(this.recipes);
             });
           }
-          console.log('THIS BURGERS', this.burgers);
         },
         (error) => {
           console.error('Error fetching random recipes:', error);
         }
       );
+  }
+
+  OnPageChange(event: PageEvent) {
+    this.startIndex = event.pageIndex * event.pageSize;
+    this.endIndex = this.startIndex + event.pageSize;
+    if (this.endIndex > this.recipes.length) {
+      this.endIndex = this.recipes.length;
+    }
+  }
+
+  getRecipeInformation(recipeId: number) {
+    this.router.navigate(['/recipes', recipeId]);
   }
 }
