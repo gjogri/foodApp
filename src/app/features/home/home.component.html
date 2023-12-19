@@ -1,21 +1,45 @@
 
-<div class="main-content">
+ <div class="main-content">
     <div class="image-container image">
       <img  src="https://assets-global.website-files.com/5e465eaf479e4cc0ef41f077/64768bc70e25d705640f4dbd_Full%20Hero%20-%20Salads.webp" alt="Background Image" class="transparent-image">
-      <!-- <div class="search-overlay">
+       <!-- <div class="search-overlay">
         <div class="search-input">
           <input type="text" placeholder="Search recipe...">
           <i class="fa fa-search"></i>
         </div>
         <div class="search-line"></div>
-      </div> -->
+      </div>  -->
       <h1 class="search-overlay"> FoodooF</h1>
     </div>
-  </div> 
-<br>
-<br>
-<br>
+  </div>  
+<div class="mat-grid"> 
+  <mat-grid-list cols="3" rowHeight="400px">
 
+    <mat-grid-tile [routerLink]="['/meal-plan-day']" [queryParams]="{ date: todayDate }">
+      <img src="https://img.freepik.com/premium-vector/healthy-eating-isolated-cartoon-vector-illustration-set_107173-32612.jpg"  alt="Meal Plan Day Image">
+      <mat-grid-tile-footer>
+        <h3>GET MEAL PLAN DAY</h3>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+
+
+
+
+    <mat-grid-tile [routerLink]="['/comparable-products']">
+      <img src="https://media.istockphoto.com/id/1363367259/vector/question-mark-made-of-fruits-and-vegetables-vector-cartoon-illustration.jpg?s=612x612&w=0&k=20&c=hrNUoSFt7dN3TgyRw1GsiyPmLNSbMCC6OV0a7vNynv0=" alt="Product Information Image">
+      <mat-grid-tile-footer>
+        <h3>GET PRODUCT INFORMATION</h3>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+
+    <mat-grid-tile [routerLink]="['/product-information']">
+      <img src="https://www.shutterstock.com/image-vector/healthy-unhealthy-food-question-mark-260nw-1978956905.jpg" alt="Comparable Products Image">
+      <mat-grid-tile-footer>
+        <h3>COMPARABLE PRODUCTS</h3>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+  </div>
 
 
 <div class="square-container">
@@ -94,37 +118,52 @@
   </div>
 </div>
 
+<!-- hover -->
+
+
+
+<div class="card-container container"    > 
+  <div class="row">
+  <div class="card-hover col-md-4" *ngFor="let recipe of randomRecipes" >
+   <div class="card-hover__content">
+     <h3 class="card-hover__title">
+       {{recipe.title}}
+     </h3>
+     <p class="card-hover__text">{{sanitizeInstructions(recipe.instructions) | slice:0:100}}...</p>
+     <a  (click)="getRecipeId(recipe.id)" class="card-hover__link">
+       <span    >Learn How</span>
+       <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+       </svg>        
+     </a>
+   </div>
+   <div class="card-hover__extra">
+     <!-- <h4>Learn <span>now</span> and get <span>40%</span> discount!</h4> -->
+   </div>
+   <img *ngIf="recipe.image" [src]="recipe.image"  alt="{{ recipe.title }}">
+   <img *ngIf="!recipe.image" src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"  alt="{{ recipe.title }}">
+ </div>
+</div>
+</div>
 
 
 
 
 
 
-
-
-
-    <div class="container">
-        <div class="row">
-          <div class="col-md-4 text-center grow" [routerLink]="['/comparable-products']">
-            <img src="https://cdn1.vectorstock.com/i/1000x1000/14/45/healthy-food-with-nutritional-facts-vector-21371445.jpg" alt="Product Information Image">
-            <p class="image-text">GET PRODUCT INFORMATION</p>   
-          </div>
-          <div class="col-md-4 text-center grow" [routerLink]="['/meal-plan-day']"   [queryParams]="{ date:  todayDate}">
-            <img src="https://wonderfeetcreativeacademy.com/wp-content/uploads/2019/03/Healthy-Meal-Plan-for-kids.jpg" alt="Meal Plan Day Image" >
-            <p  class="image-text ">GET MEAL PLAN DAY</p>
-          </div>
-          <div class="col-md-4 text-center grow " [routerLink]="['/product-information']" >
-             <img   src="https://pbs.twimg.com/media/Ex-Oo8fUYAIPQya.png"alt="Comparable Products Image" class="">
-             <p class="image-text ">COMPARABLE PRODUCTS</p>
-          </div>
-       
-        </div>
-      </div>
-  
-      
+<div class=" jokes-background">
+  <div class="row col-md-12" > 
+    <div class="col-md-3"> 
+<app-jokes-dialog></app-jokes-dialog>
+</div>  
+</div>
      
-  <div class="max-width-container" style="max-width: 1200px; margin: 0 auto;">
-        <mat-grid-list cols="5" rowHeight="250px">
+
+
+
+
+  <!-- <div class="max-width-container" style="max-width: 1200px; margin: 0 auto;">
+        <mat-grid-list cols="3" rowHeight="500px" >
       <mat-grid-tile *ngFor="let recipe of randomRecipes">
         <div class="recipe-card" matRipple>
           <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image" />
@@ -135,5 +174,51 @@
         </div>
       </mat-grid-tile>
     </mat-grid-list>
+  </div> -->
+ <!-- <mat-card class="custom-mat-card"> 
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Joke of the Day</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ joke }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button class="mat-button fixed-button " mat-button (click)="getAnotherJoke()">Get Another Joke</button>
+  
+    </mat-card-actions>
+  </mat-card>  -->
+
+
+
+
+
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-4 custom-mat-card">
+        <mat-card-title>Joke of the Day</mat-card-title>
+        <mat-card-content>
+          <p>{{ "asdasdsadsdd" }}</p>
+        </mat-card-content>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center align-items-center custom-mat-card">
+        <mat-card-title>Joke of the Day</mat-card-title>
+        <mat-card-content>
+          <img src="https://img.freepik.com/premium-vector/healthy-eating-isolated-cartoon-vector-illustration-set_107173-32612.jpg" alt="Meal Plan Day Image" class="img-fluid">
+        </mat-card-content>
+        <mat-card-content>
+          <p>{{ "asdasdsadsdd" }}</p>
+        </mat-card-content>
+      </div>
+      <div class="col-md-4 custom-mat-card">
+        <mat-card-title>Joke of the Day</mat-card-title>
+        <mat-card-content>
+          <p>{{ "asdasdsadsdd" }}</p>
+        </mat-card-content>
+      </div>
+    </div>
   </div>
+  
+   -->
+
 

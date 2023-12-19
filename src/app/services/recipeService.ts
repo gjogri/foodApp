@@ -49,7 +49,6 @@ export class recipeService {
   }
 
   getMealPlanDay(date: string) {
-    console.log('DATEEE', date);
     const url = `https://api.spoonacular.com/mealplanner/gjorgi123/day/${date}?hash=${this.hash}&apiKey=${this.apiKey}`;
     return this.http.get<any>(url);
   }
@@ -60,6 +59,11 @@ export class recipeService {
   }
 
   getDate(): Observable<string> {
-    return this.dateSubject.asObservable(); // Return an Observable to subscribe to changes
+    return this.dateSubject.asObservable();
+  }
+
+  getRandomJokes() {
+    const url = `https://api.spoonacular.com/food/jokes/random?apiKey=${this.apiKey}`;
+    return this.http.get<any>(url);
   }
 }

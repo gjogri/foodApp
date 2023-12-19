@@ -50,21 +50,17 @@ export class MealPlanDayComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      console.log('params', params);
       this.todayDate = params['date'];
     });
     this.newFunction(this.todayDate);
   }
 
   onDateSelected(event: any) {
-    console.log('event on SELECTED', event.value);
     this.todayDate = event.value;
     this.newFunction(this.todayDate);
-    console.log(' this.selectedDate!!!', this.todayDate);
   }
 
   newFunction(date: string) {
-    console.log('inNewFunction', date);
     this.breakfastItems = [];
     this.lunchItems = [];
     this.dinnerItems = [];

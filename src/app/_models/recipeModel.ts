@@ -26,4 +26,5 @@ export class RecipeModel {
   description!: string;
   isFavorite!: boolean;
   servings!: number;
+  summary!: string;
 }
