@@ -36,6 +36,7 @@ export class MealPlanDayComponent implements OnInit {
   isSelectedBreakfast: boolean = false;
   isSelectedLunch: boolean = false;
   isSelectedDinner: boolean = false;
+  imageUrlFallback = 'https://eastinthewest.co.uk/images/mob-index-img.jpg';
   noneSelected =
     !this.isSelectedBreakfast &&
     !this.isSelectedLunch &&
@@ -52,15 +53,15 @@ export class MealPlanDayComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.todayDate = params['date'];
     });
-    this.newFunction(this.todayDate);
+    this.getRecipeOnDate(this.todayDate);
   }
 
   onDateSelected(event: any) {
     this.todayDate = event.value;
-    this.newFunction(this.todayDate);
+    this.getRecipeOnDate(this.todayDate);
   }
 
-  newFunction(date: string) {
+  getRecipeOnDate(date: string) {
     this.breakfastItems = [];
     this.lunchItems = [];
     this.dinnerItems = [];
@@ -89,11 +90,18 @@ export class MealPlanDayComponent implements OnInit {
           );
           this.updateSelectedChartData();
           data.items.forEach((item: Items) => {
-            this.recipeService
-              .getRecipeById(item.value.id)
-              .subscribe((recipe) => {
-                item.imageUrl = recipe.image;
-              });
+            console.log('ITEM IN MEAL PLAN', item);
+            try {
+              this.recipeService
+                .getRecipeById(item.value.id)
+                .subscribe((recipe) => {
+                  item.imageUrl = recipe.image;
+
+                  item.value.preparationMinutes = recipe.preparationMinutes;
+                });
+            } catch {
+              item.imageUrl = this.imageUrlFallback;
+            }
             if (item.slot === 1) {
               this.breakfastItems.push(item);
             } else if (item.slot === 2) {
@@ -115,6 +123,7 @@ export class MealPlanDayComponent implements OnInit {
       );
     }
   }
+
   getRecipeInformation(recipeId: number) {
     this.router.navigate(['/recipes', recipeId], {
       queryParams: { date: this.selectedDate },
@@ -154,10 +163,8 @@ export class MealPlanDayComponent implements OnInit {
     } else if (this.isSelectedLunch) {
       this.selectedChartData = this.chartDataLunch;
     } else if (this.isSelectedDinner) {
-      console.log('test');
       this.selectedChartData = this.chartDataDinner;
     } else if (this.noneSelected) {
-      console.log('noneSelected:', this.noneSelected);
       this.selectedChartData = this.chartDataSummary;
     }
     this.cdr.detectChanges();

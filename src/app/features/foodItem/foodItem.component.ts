@@ -27,7 +27,6 @@ export class FoodItemComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.category = params['category'] || null;
       if (this.category) {
-        console.log('onInit:', this.numberOfRecipes);
         this.getRecipes(this.category, this.numberOfRecipes);
       }
     });
@@ -38,13 +37,10 @@ export class FoodItemComponent implements OnInit {
       .getRecipeByIngredient(ingredient, numberOfRecipes)
       .subscribe(
         (recipe: any) => {
-          console.log('Recipes', recipe);
           this.numberOfRecipes = recipe.totalResults;
-          console.log('this.number.ofRecipes', this.numberOfRecipes);
           if (this.numberOfRecipes > 0) {
             recipe.results.forEach((items: RecipeModel[]) => {
               this.recipes.push(items);
-              console.log(this.recipes);
             });
           }
         },

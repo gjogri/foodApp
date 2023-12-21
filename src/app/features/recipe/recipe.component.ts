@@ -12,6 +12,7 @@ export class RecipeComponent implements OnInit {
   recipe: RecipeModel | undefined;
   currentId: number | undefined;
   mealPlanDayDate: string = '';
+  activeTab: string = 'Ingredients';
   constructor(
     private recipeService: recipeService,
     private router: Router,
@@ -86,5 +87,9 @@ export class RecipeComponent implements OnInit {
       // 'date' parameter doesn't exist, navigate back or to another route
       this.location.back();
     }
+  }
+  toggleActive(tabName: string): void {
+    this.activeTab = tabName;
+    // Add logic here to handle tab switching or content display based on the selected tab
   }
 }

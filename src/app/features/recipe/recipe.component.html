@@ -1,50 +1,51 @@
 
-<div class="split-background">
-  
+
+<div class="container" > 
   <mat-icon class="arrow-back" (click)="navigateBack()">arrow_back</mat-icon>
-    <div class="left-pane">
-      <div class="max-width-container">
-        <h2 class="font-style">{{ recipe?.title }}</h2>
-        <div class="cover-photo">
-            <img [src]="recipe?.image" alt="{{ recipe?.title }}" class="recipe-image" />
-        </div>
-        <h2 class="font-style">
-            <i class="material-icons">schedule</i>  {{ recipe?.readyInMinutes }} 
-          </h2>
-          <h2 class="font-style">
-            <i class="material-icons">restaurant</i>  {{ recipe?.servings }}
-          </h2>
-      </div>
-    </div>
-  
-    <div class="right-pane">
-      <div class="max-width-container">
-        <div class="content-container">
-          <div class="column">
-            <h3>Ingredients</h3>
-            <ul>
-              <li *ngFor="let ingredient of recipe?.extendedIngredients">
-                {{ ingredient.name }}: {{ ingredient.measures.metric.amount }} {{ ingredient.measures.metric.unitShort }}
-              </li>
-            </ul>
-        
-            <h3>Description</h3>
-            <p>{{ recipe?.instructions}}</p>
-           
-           
-          </div>
-        </div>
-        <button mat-icon-button
-        color="white"
-        class="heart-button"
-        aria-label="Add to favorites"
-        [class.favorited]="recipe?.isFavorite"
-        (click)="addToFavorites()">
-  <mat-icon>{{ recipe?.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
-</button>
-      </div>
-      
+
+  <div class='recipe-card'>
+    <div style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+      <img
+        [src]="recipe?.image"
+        alt="{{ recipe?.title }}"
+        class="recipe-image"
+        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto;"
+      />
     </div>
     
+    <div class="recipe-card__body">
+      <h1 class="recipe-card__heading">{{recipe?.title}}</h1>
+      <h2 class="recipe-card__subhead">Crunchy around the edges, softer in the center, these oatmeal cookies feature the nutty taste and nubbly texture of oats. </h2>
+      
+       <ul class="recipe-card__nav">
+        <li>
+          <h3 class="active">Ingredients</h3>
+        </li>
+        <li>
+          <h3>Method</h3>
+        </li>
+      </ul> 
+    
+      
+      
+      <ul class="recipe-card__ingredients">
+        
+          <li *ngFor="let ingredient of recipe?.extendedIngredients">
+            {{ ingredient.name }}: {{ ingredient.measures.metric.amount }} {{ ingredient.measures.metric.unitShort }}
+          </li>
+        
+    </ul>
+    </div>
+    <div class="heart-position"> 
+    <button mat-icon-button
+    color="white"
+    class="heart-button"
+    aria-label="Add to favorites"
+    [class.favorited]="recipe?.isFavorite"
+    (click)="addToFavorites()">
+<mat-icon>{{ recipe?.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+</button>
+</div>
   </div>
-  
+
+</div>

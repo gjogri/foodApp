@@ -1,76 +1,116 @@
-
-
+<div class="background-img" > 
+ 
+  <div class="datepicker-container">
+    <div class="frame-input-fields">
+    <label for="datepicker" class="datepicker-label">Select date:</label>
+    <input type="date" id="datepicker" pattern="\d{4}-\d{2}-\d{2}" name="datepicker" class="datepicker-input" (change)="onDateSelected($event.target)">
   
-<div class="position-relative">
-    <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" alt="" class="img-fluid">
-    <div class="position-absolute top-50 start-50 translate-middle">
-      <div class="form-group input-field">
-        <label for="datepicker" class="datepicker-label  custom-label text-white">Select a day:</label>
-        <input  type="date" id="datepicker" name="datepicker" class="form-control custom-input" pattern="\d{4}-\d{2}-\d{2}" required (change)="onDateSelected($event.target)" >
-      </div>
-    </div>
-
-  </div  >  
+  
+ 
   <div *ngIf="isSelectedDate  "> 
-  <div class="centered-chips"  >
+  <div class="centered-chips" *ngIf="isSelectedDate"  >
     <div *ngIf="isSelectedDate ">
       <mat-chip-listbox aria-label="meal-plan" class="mat-chip" >
-        <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Breakfast')">Breakfast</mat-chip-option>
-        <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Lunch')"color="warn">Lunch</mat-chip-option>
+        <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Breakfast')" color="accent">Breakfast</mat-chip-option>
+        <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Lunch')"color="accent">Lunch</mat-chip-option>
         <mat-chip-option class="mat-chip-option"   (click)="toggleSelection('Dinner')" color="accent" >Dinner</mat-chip-option>
       </mat-chip-listbox>
     </div>
+   </div>
   </div>
-    <div class="item-card-container" *ngIf="isSelectedDate">
+ </div>
+</div>  
+</div>
+  <mat-grid-list  class="mat-grid-list"cols="3" rowHeight="2:1" *ngIf="isSelectedDate">
    
-         <div class="col" *ngIf="isSelectedBreakfast || selectedAllMeal ">
-            <h2 class="meal-title">Breakfast</h2> 
-          <div *ngFor="let item of breakfastItems" (click)="getRecipeInformation(item.value.id)">
-              <div class="recipe-card" matRipple>
-                <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
-                  <div class="overlay">
-                      <h4 class="recipe-title">{{ item.value.title }}</h4>
-                     <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn" >View More</button>
-                 </div>
-              </div>
-          </div>
-         </div> 
+    <mat-grid-tile class="mat-grid-title" *ngIf="isSelectedBreakfast || selectedAllMeal">  
+      <div class="meal-type">
 
-         <div class="col" *ngIf="isSelectedLunch || selectedAllMeal">
-          <h2 class="meal-title">Lunch</h2>
-          <div class="recipe-container">
-            <div *ngFor="let item of lunchItems" (click)="getRecipeInformation(item.value.id)">
-              <div class="recipe-card" matRipple>
-                <div class="image-container">
-                  <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
-                </div>
-                <div class="overlay">
-                  <h4 class="recipe-title">{{ item.value.title }}</h4>
-                  <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn">View More</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-  
-        <div class="col" *ngIf="isSelectedDinner || selectedAllMeal">
-            <h2 class="meal-title">Dinner</h2> 
-          <div *ngFor="let item of dinnerItems" (click)="getRecipeInformation(item.value.id)">
-              <div class="recipe-card" matRipple>
-                <img [src]="item.imageUrl" alt="{{ item.value.title }}" class="recipe-image" />
-                  <div class="overlay">
-                      <h4 class="recipe-title">{{ item.value.title }}</h4>
-                     <button mat-button (click)="getRecipeInformation(item.value.id)" class="view-more-btn" >View More</button>
-                 </div>
-              </div>
-          </div>
+      </div>
+      <div class="recipe-card  "  *ngFor="let item of breakfastItems">
+       <div (click)="getRecipeInformation(item.value.id)" class="recipe-card__cover">
+         <div class="recipe-card__img">
+           <img
+             [src]="item.imageUrl" alt="{{ item.value.title }}">
          </div>
-    </div> 
+         <div class="recipe-card__cover-details">
+           <div id="recipe-card__duration" class="recipe-card__duration">
+             <p><span>{{item.value.preparationMinutes}}</span>mins</p>
+           </div>
+           <div id="recipe-card__servings" class="recipe-card__servings">
+             <p><span>{{item.value.servings}}</span>servings</p>
+           </div>
+           <div id="recipe-card__info" class="recipe-card__info">
+             <div class="recipe-card__title">
+               <h1>{{ item.value.title }}</h1>
+             </div> 
+           </div>
+         </div>
+       </div>
+      </div>
+ 
+  </mat-grid-tile>
 
 
-    <div class="card charts-margins " *ngIf="isSelectedDate">
-      <div class="card-header daily-summary"> Daily Summary </div>
+
+  <mat-grid-tile class="mat-grid-title"  *ngIf="isSelectedLunch || selectedAllMeal">
+  <div class="recipe-card" *ngFor="let item of lunchItems" >
+    
+   <div (click)="getRecipeInformation(item.value.id)" class="recipe-card__cover">
+     <div class="recipe-card__img">
+       <img
+         [src]="item.imageUrl" alt="{{ item.value.title }}">
+     </div>
+     <div class="recipe-card__cover-details">
+       <div id="recipe-card__duration" class="recipe-card__duration">
+         <p><span>{{item.value.preparationMinutes}}</span>mins</p>
+       </div>
+       <div id="recipe-card__servings" class="recipe-card__servings">
+         <p><span>{{item.value.servings}}</span>servings</p>
+       </div>
+       <div id="recipe-card__info" class="recipe-card__info">
+         <div class="recipe-card__title">
+           <h1>{{ item.value.title }}</h1>
+         </div>
+       </div>
+       
+     </div>
+   </div>
+ </div>
+</mat-grid-tile>
+
+    <mat-grid-tile class="mat-grid-title"   *ngIf="isSelectedDinner || selectedAllMeal">
+      <div class="title-container">
+        
+      </div>
+      <div class="recipe-card  container "  *ngFor="let item of dinnerItems">
+       <div (click)="getRecipeInformation(item.value.id)" class="recipe-card__cover">
+         <div class="recipe-card__img">
+           <img
+             [src]="item.imageUrl" alt="{{ item.value.title }}">
+         </div>
+         <div class="recipe-card__cover-details">
+           <div id="recipe-card__duration" class="recipe-card__duration">
+             <p><span>{{item.value.preparationMinutes}}</span>mins</p>
+           </div>
+           <div id="recipe-card__servings" class="recipe-card__servings">
+             <p><span>{{item.value.servings}}</span>servings</p>
+           </div>
+           <div id="recipe-card__info" class="recipe-card__info">
+             <div class="recipe-card__title">
+               <h1>{{ item.value.title }}</h1>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+  
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+    <div class="charts-margins " *ngIf="isSelectedDate">
+      <div class="card-header daily-summary"> Daily Nutrition Summary </div>
       <div class="card-block" > 
      <ngx-charts-bar-horizontal 
     [results]="selectedChartData"
@@ -84,4 +124,3 @@
   </div>
   </div>
 
-</div>
