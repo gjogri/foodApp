@@ -31,21 +31,23 @@
  /// 
  .container {
 
-  background: #fff;
   font: 13px 'Open Sans', sans-serif;
   color: #222;
-  background-image: url(../../../images/hand-drawn-food-background_23-2148065722.jpg);
+  background-image: url(../../../images/background11.jpg);
   background-size: cover;
   background-position: center;
   padding-bottom: 100px;
+
   
 }
 
 .recipe-card {
+  padding: 100px;
   -webkit-box-shadow: 0px 0px 20px 1px rgba(240,241,243,1);
   -moz-box-shadow: 0px 0px 30px 2px rgba(240,241,243,1);
   box-shadow: 0px 0px 20px 1px rgba(240,241,243,1);
   border:1px solid #ebe7df;
+  border-radius: 8px;
   width: 300px;
   margin: 50px auto;
   position: relative;
@@ -121,4 +123,37 @@
   .recipe-card__ingredients {
     column-count: 2
   }
+}
+
+
+
+
+.title {
+
+  background-color: rgba(235, 231, 223, 0.8);
+  font-size: 56px;
+  font-weight: 500;
+
+  text-align: center;
+  padding: 100px;
+
+  
+}
+
+.line {
+  position: relative;
+  height: 3px;
+  background-color: #424242;
+  margin-top: 10px; /* Adjust the space between title and line */
+}
+
+.custom-line {
+  width: 50px; /* Adjust the width of the line */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.title::first-letter {
+  text-transform: uppercase; 
 }

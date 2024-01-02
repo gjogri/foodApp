@@ -27,4 +27,5 @@ export class RecipeModel {
   isFavorite!: boolean;
   servings!: number;
   summary!: string;
+  preparationMinutes!: number;
 }

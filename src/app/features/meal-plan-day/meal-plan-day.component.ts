@@ -76,7 +76,6 @@ export class MealPlanDayComponent implements OnInit {
     if (this.todayDate) {
       this.recipeService.getMealPlanDay(this.todayDate).subscribe(
         (data: any) => {
-          console.log('data.breakfast AFTER', data);
           this.chartDataSummary = this.filterChartData(data.nutritionSummary);
 
           this.chartDataBreakfast = this.filterChartData(
@@ -90,18 +89,16 @@ export class MealPlanDayComponent implements OnInit {
           );
           this.updateSelectedChartData();
           data.items.forEach((item: Items) => {
-            console.log('ITEM IN MEAL PLAN', item);
-            try {
-              this.recipeService
-                .getRecipeById(item.value.id)
-                .subscribe((recipe) => {
-                  item.imageUrl = recipe.image;
+            this.recipeService.getRecipeById(item.value.id).subscribe(
+              (recipe) => {
+                item.imageUrl = recipe.image;
+                item.value.preparationMinutes = recipe.preparationMinutes;
+              },
+              (error) => {
+                item.imageUrl = this.imageUrlFallback;
+              }
+            );
 
-                  item.value.preparationMinutes = recipe.preparationMinutes;
-                });
-            } catch {
-              item.imageUrl = this.imageUrlFallback;
-            }
             if (item.slot === 1) {
               this.breakfastItems.push(item);
             } else if (item.slot === 2) {
@@ -114,9 +111,6 @@ export class MealPlanDayComponent implements OnInit {
         (error: any) => {
           this.isSelectedDate = false;
           this.cdr.detectChanges();
-          this.openErrorDialog(
-            `No meal plan for ${this.selectedDate}.Please select another date`
-          );
 
           console.error('Error fetching week plan:', error);
         }
@@ -125,9 +119,13 @@ export class MealPlanDayComponent implements OnInit {
   }
 
   getRecipeInformation(recipeId: number) {
-    this.router.navigate(['/recipes', recipeId], {
-      queryParams: { date: this.selectedDate },
-    });
+    this.router.navigate(
+      ['/recipes', recipeId],
+
+      {
+        queryParams: { date: this.selectedDate },
+      }
+    );
   }
 
   toggleSelection(selectedMeal: string) {

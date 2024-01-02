@@ -18,7 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FoodItemComponent } from './foodItem/foodItem.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-
+import { BreadcrumbModule } from 'xng-breadcrumb';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -42,6 +42,7 @@ import { MatTableModule } from '@angular/material/table';
     MatChipsModule,
     MatPaginatorModule,
     MatTableModule,
+    BreadcrumbModule,
   ],
   exports: [],
 })

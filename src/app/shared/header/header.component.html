@@ -1,22 +1,13 @@
- <mat-toolbar class="transparent-toolbar">
-  <span class="app-logo">
-    <img src="https://png.pngtree.com/png-vector/20220727/ourmid/pngtree-healthy-food-with-fruits-and-vegetables-vector-illustration-png-image_6085302.png" alt="Food App Logo" height="40">
-  </span>
 
-  <div class="spacer"></div>
-
-  <div class="button-group">
-    <div class="search-overlay">
-      <div class="search-input">
-        <input type="text" placeholder="Search recipe...">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="search-line"></div>
-    </div>
-    <button mat-button routerLink="/home" routerLinkActive="active" >Home</button>
-    <button mat-button routerLink="/recipes" routerLinkActive="active">Recipes</button>
-    <button mat-button routerLink="/pulseFit" routerLinkActive="active">PulseFit</button>
-  </div>
-</mat-toolbar> 
 
   
+
+<nav>
+  <ul class="menuItems">
+    <li><a href='#' data-item='Home' routerLink="/home" >Home</a></li>
+    <li><a href='#' data-item='About'  >About</a></li>
+    <li><a  data-item='Recipes'>Recipes</a></li>
+    <li><a  data-item='GET MEAL PLAN' routerLink="/meal-plan-day"  [queryParams]="{ date: todayDate }" >GET MEAL PLAN</a></li>
+    <li><a  data-item='Contact' (click)="scrollToFooter()">Contact</a></li>
+  </ul>
+</nav>

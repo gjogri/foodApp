@@ -4,13 +4,43 @@
   flex-direction: column;
   justify-content: center; 
   align-items: center; 
-  height: 100vh; 
-  padding-right: 15px;
-  padding-left: 15px;
+  // height: 100vh; 
+  padding-right: 150px;
+  padding-left: 150px;
   margin-top: 30px;
   margin-bottom: 150px;
+ 
+  flex-wrap: wrap;
+
+  }
+
+
+
+  .title {
+    margin-top:50px;
+    font-size: 56px;
+    font-weight: 400;
+    text-align: center;
   }
   
+  .line {
+    position: relative;
+    height: 3px;
+    background-color: #424242;
+    margin-top: 10px; 
+  }
+  
+  .custom-line {
+    width: 50px; 
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+
+  .title::first-letter {
+    text-transform: uppercase; 
+  }
+
   .row {
     display: flex;
     flex-wrap: wrap;
@@ -18,30 +48,29 @@
     margin-right: -15px;
     margin-left: -15px;
     gap: 10px;
+   
   }
-  
+
   // paginator
   .paginator{
    padding-top: 300px;
   }
 
-  /// new  recipe card
   
 
   .recipe-card {
-
+    // width: 100%; 
+    margin-bottom: 20px;
     border-radius: 15px;
     display: flex;
-    // background: #eee;
     margin-right: 10px;
-    // margin-bottom: 150px;
     &__cover {
       cursor: pointer;
       background:#EEE;
       border-radius: 15px;    
       position: relative;
-      height: 300px;
-      width: 200px;
+      height: 350px;
+      width: 250px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -206,3 +235,11 @@
     }
   }
   
+
+  .mat-mdc-paginator {
+    background-color: #ebe7df;
+    color:black;
+  }
+  .mat-mdc-form-field-infix{
+    color: black;
+  }

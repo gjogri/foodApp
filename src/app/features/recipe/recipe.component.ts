@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { Location } from '@angular/common';
 import { recipeService } from 'src/app/services/recipeService';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -13,6 +14,7 @@ export class RecipeComponent implements OnInit {
   currentId: number | undefined;
   mealPlanDayDate: string = '';
   activeTab: string = 'Ingredients';
+
   constructor(
     private recipeService: recipeService,
     private router: Router,
@@ -63,17 +65,6 @@ export class RecipeComponent implements OnInit {
       console.log(this.recipe.isFavorite);
     }
   }
-
-  // returnBackToMealPlan(): void {
-  //   this.route.queryParams.subscribe((params) => {
-  //     console.log('params', params);
-  //     this.mealPlanDayDate = params['date'];
-  //     console.log('this.selectedDate on BACK:', this.mealPlanDayDate);
-  //   });
-  //   this.router.navigate(['/meal-plan-day'], {
-  //     queryParams: { date: this.mealPlanDayDate },
-  //   });
-  // }
 
   navigateBack() {
     const queryParams = this.route.snapshot.queryParams;

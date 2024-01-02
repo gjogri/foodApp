@@ -4,13 +4,14 @@
   background: #fff;
   font: 13px 'Open Sans', sans-serif;
   color: #222;
-  background-image: url(../../../images/hand-drawn-food-background_23-2148065722.jpg);
+  background-image: url(../../../images/background11.jpg);
   background-size: cover;
   background-position: center;
   padding-bottom: 100px;
   
 }
 .datepicker-container {
+  font-family: Roboto, sans-serif;
   display: flex;
   align-items: center!important;
   justify-content: center;
@@ -22,6 +23,7 @@
  
 }
 .frame-input-fields{
+  font-family: Roboto, sans-serif;
   border:3px solid #f7f4ee;  
   padding: 30px 20px 20px;
   border-radius: 8px;
@@ -29,6 +31,7 @@
   
 }
 .datepicker-label {
+  font-family: Roboto, sans-serif;
   font-weight: bold;
   font-size: larger;
   color: #333;
@@ -37,25 +40,23 @@
 }
 
 .datepicker-input {
+  font-family: Roboto, sans-serif;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
 }
 
+.not-selected{
+  font-family: Roboto, sans-serif;
+  font-size: 50px;  
+  text-align: center;
+  margin-top: 50px; 
+  margin-bottom: 50px;
+}
 
 
 
-
-// .datepicker-label {
-//     font-size: 28px;
-//     color: #9e1a1a!important;
-//     font-weight:500 !important;
-//   }
-
-  // .input-field {
-  //   text-align: center; 
-  // }
   
   .custom-input {
     width: 80%; 
@@ -82,6 +83,7 @@
   }
   
   input[type="date"] {
+    font-family: Roboto, sans-serif;
     padding: 12px; 
     font-size: 20px; 
     border-radius: 6px;
@@ -137,7 +139,7 @@
   justify-content: center;
   // margin-bottom: 130px;
   margin-top: 20px;
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
   
 }
 .mat-chip-option{
@@ -152,10 +154,9 @@
 
 .mat-grid-list {
   margin-bottom: 20px !important;
-  background-color: #f7f4ee;
+  // background-color: #f7f4ee;
   padding-top: 100px;
 
-  // padding-bottom: 300px, !important;
  
 }
 .title-container {

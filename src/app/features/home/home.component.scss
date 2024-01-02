@@ -46,14 +46,15 @@
     -o-box-shadow: inset 0px 850px 500px -500px #000;
     box-shadow: inset 0px 850px 500px -500px #000;
   }
-  
-  
-  
-  
-  
+
   /* SEARCH INPUT */
   
-  
+  .font-style{
+    font-family: 'Pacifico', cursive;
+    font-weight: 4  00;
+    text-transform: lowercase;
+    font-size: 4.5rem;
+  }
   .search-overlay {
     position: absolute;
     top: 25%; /* Adjust the position from the top */
@@ -252,8 +253,7 @@
 
   // MAT
 
-  .mat-grid{
-  }
+ 
 
   .mat-grid-tile-footer {
     padding-top: 100px;
@@ -458,8 +458,4 @@ img {
   padding: 100px;
 }
 
-
-/// header
-/// 
-//
 

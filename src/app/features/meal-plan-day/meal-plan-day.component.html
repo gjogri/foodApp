@@ -1,5 +1,9 @@
 <div class="background-img" > 
- 
+
+  <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+<ng-template #iconTemplate>
+  <mat-icon>chevron_right</mat-icon>
+</ng-template>
   <div class="datepicker-container">
     <div class="frame-input-fields">
     <label for="datepicker" class="datepicker-label">Select date:</label>
@@ -7,8 +11,8 @@
   
   
  
-  <div *ngIf="isSelectedDate  "> 
-  <div class="centered-chips" *ngIf="isSelectedDate"  >
+ 
+  <div class="centered-chips" *ngIf="isSelectedDate" >
     <div *ngIf="isSelectedDate ">
       <mat-chip-listbox aria-label="meal-plan" class="mat-chip" >
         <mat-chip-option class="mat-chip-option"  (click)="toggleSelection('Breakfast')" color="accent">Breakfast</mat-chip-option>
@@ -17,16 +21,18 @@
       </mat-chip-listbox>
     </div>
    </div>
-  </div>
+  
  </div>
 </div>  
 </div>
-  <mat-grid-list  class="mat-grid-list"cols="3" rowHeight="2:1" *ngIf="isSelectedDate">
-   
-    <mat-grid-tile class="mat-grid-title" *ngIf="isSelectedBreakfast || selectedAllMeal">  
-      <div class="meal-type">
 
-      </div>
+  <mat-grid-list  class="mat-grid-list"cols="3" rowHeight="2:1" *ngIf="isSelectedDate">
+    <h2>Breakfast Recipes</h2>
+    <mat-grid-tile class="mat-grid-title" *ngIf="isSelectedBreakfast || selectedAllMeal">  
+
+      <div class="meal-type">
+ 
+      </div>      
       <div class="recipe-card  "  *ngFor="let item of breakfastItems">
        <div (click)="getRecipeInformation(item.value.id)" class="recipe-card__cover">
          <div class="recipe-card__img">
@@ -47,8 +53,8 @@
            </div>
          </div>
        </div>
-      </div>
- 
+     
+    </div>
   </mat-grid-tile>
 
 
@@ -109,7 +115,7 @@
   </mat-grid-list>
 
 
-    <div class="charts-margins " *ngIf="isSelectedDate">
+    <div class="charts-margins " *ngIf="isSelectedDate; else notSelectedDate">
       <div class="card-header daily-summary"> Daily Nutrition Summary </div>
       <div class="card-block" > 
      <ngx-charts-bar-horizontal 
@@ -124,3 +130,15 @@
   </div>
   </div>
 
+  <ng-template #notSelectedDate>
+    <div class="not-selected">
+      <h1 >
+        NO FOOD FOR  ({{todayDate}})
+      </h1>
+      <img src="https://media.istockphoto.com/id/857545002/photo/hand-hold-fork-and-knife-with-and-empty-plate-on-wood.jpg?b=1&s=170667a&w=0&k=20&c=HFFIp0AJJoKXbTRme6VXIr_g16Z5fEB43Uxr1afFukM=" alt="">
+     </div>
+   
+    
+  </ng-template>
+
+  <!-- <router-outlet></router-outlet> -->

@@ -11,12 +11,36 @@ import { FoodItemComponent } from './features/foodItem/foodItem.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'recipes/:id', component: RecipeComponent },
-  { path: 'comparable-products', component: ComparableProductsComponent },
-  { path: 'meal-plan-day', component: MealPlanDayComponent },
-  { path: 'product-information', component: ProductInformationComponent },
-  { path: 'error-dialog', component: ErrorDialogComponent },
-  { path: 'foodItems', component: FoodItemComponent },
+  {
+    path: 'recipes/:id',
+    component: RecipeComponent,
+    data: { breadcrumb: 'recipes' },
+  },
+  {
+    path: 'comparable-products',
+    component: ComparableProductsComponent,
+    data: { breadcrumb: { alias: 'comparable-products' } },
+  },
+  {
+    path: 'meal-plan-day',
+    component: MealPlanDayComponent,
+    data: { breadcrumb: 'meal-plan-day' },
+  },
+  {
+    path: 'product-information',
+    component: ProductInformationComponent,
+    data: { breadcrumb: { alias: 'product-information' } },
+  },
+  {
+    path: 'error-dialog',
+    component: ErrorDialogComponent,
+    data: { breadcrumb: { alias: 'error-dialog' } },
+  },
+  {
+    path: 'foodItems',
+    component: FoodItemComponent,
+    data: { breadcrumb: { alias: 'foodItem' } },
+  },
   { path: '**', component: HomeComponent },
 ];
 

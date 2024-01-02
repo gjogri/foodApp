@@ -1,6 +1,16 @@
 
 
+<xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+<ng-template #iconTemplate>
+  <mat-icon>chevron_right</mat-icon>
+</ng-template>
 <div class="container" > 
+  <div>
+    <h2 class="title " >{{recipe?.title}}</h2>
+    <div class="line custom-line"></div>
+    
+  </div>
+  
   <mat-icon class="arrow-back" (click)="navigateBack()">arrow_back</mat-icon>
 
   <div class='recipe-card'>
@@ -22,7 +32,7 @@
           <h3 class="active">Ingredients</h3>
         </li>
         <li>
-          <h3>Method</h3>
+          
         </li>
       </ul> 
     
