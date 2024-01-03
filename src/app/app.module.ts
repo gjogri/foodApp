@@ -10,6 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { BreadcrumbService } from 'xng-breadcrumb';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -20,6 +26,11 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     FeatureModule,
     BrowserAnimationsModule,
     BreadcrumbModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [BreadcrumbService],
   bootstrap: [AppComponent],

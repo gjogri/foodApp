@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-carousel',
@@ -6,26 +7,55 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-  slides: any[] = new Array(3).fill({
-    id: -1,
-    src: '',
-    title: '',
-    subtitle: '',
-  });
-
-  constructor() {}
+  carouselItems: any[] = [];
 
   ngOnInit(): void {
-    this.slides[0] = {
-      src: 'https://scontent.fskp4-1.fna.fbcdn.net/v/t1.6435-9/120291304_166913655078444_5202734340586219777_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=300f58&_nc_ohc=cP9Kqs7Z7DYAX8NNvMw&_nc_ht=scontent.fskp4-1.fna&oh=00_AfCLlnq_9V46PN0yEvdEeN-zlIhgBdoE5P0xAaLCuvcuTA&oe=659FB59D',
-    };
-    this.slides[1] = {
-      src: 'https://timelinecovers.pro/facebook-cover/download/burger-with-french-fries-facebook-cover.jpg',
-    };
-    this.slides[2] = {
-      src: 'https://img.freepik.com/photos-premium/hamburger-laitue-tomate-laitue-fond-sombre_896360-4273.jpg',
-    };
-
-    console.log(this.slides);
+    console.log('CAROUSEL');
+    this.carouselItems = [
+      {
+        src: 'https://img.freepik.com/free-vector/flat-international-tea-day-background_23-2149346995.jpg',
+        alt: 'Image 1',
+      },
+      {
+        src: 'https://images.template.net/108159/food-clipart-background-1q5e4.png',
+        alt: 'Image 1',
+      },
+      {
+        src: 'https://images.template.net/113398/world-food-day-cartoon-background-h6xy8.png',
+        alt: 'Image 1',
+      },
+      {
+        src: 'https://media.istockphoto.com/id/1148762903/photo/cook-preparing-bacon-slices-with-garlic-and-hot-pepper-and-broccoli-in-a-pan.jpg?s=2048x2048&w=is&k=20&c=qgum4MoinLkn-pijmXsQGfG4ERiXfbfMGU9-ToofZ_s=',
+        alt: 'Image 1',
+      },
+    ];
+    console.log('this', this.carouselItems);
   }
+
+  customOptions: any = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 3000,
+    navText: ['TEST', 'XAXAXA'],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 1,
+      },
+      740: {
+        items: 1,
+      },
+      940: {
+        items: 1,
+      },
+    },
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+  };
 }

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,6 +10,11 @@ import { JokesDialogComponent } from './jokes-dialog/jokes-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { FooterComponent } from './footer/footer.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
 const materialModules = [
   MatToolbarModule,
   MatInputModule,
@@ -22,8 +27,18 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [ErrorDialogComponent, CarouselComponent, JokesDialogComponent],
-  imports: [...materialModules],
-  exports: [...materialModules, CarouselComponent, JokesDialogComponent],
+  declarations: [
+    ErrorDialogComponent,
+    CarouselComponent,
+    JokesDialogComponent,
+    FooterComponent,
+  ],
+  imports: [...materialModules, CarouselModule, CommonModule, BrowserModule],
+  exports: [
+    ...materialModules,
+    CarouselComponent,
+    JokesDialogComponent,
+    FooterComponent,
+  ],
 })
 export class SharedModule {}

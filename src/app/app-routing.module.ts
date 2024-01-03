@@ -9,7 +9,7 @@ import { ErrorDialogComponent } from './shared/error-dialog/error-dialog.compone
 import { FoodItemComponent } from './features/foodItem/foodItem.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
   { path: 'home', component: HomeComponent },
   {
     path: 'recipes/:id',

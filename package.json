@@ -20,13 +20,16 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
-    "@coreui/coreui": "^4.3.2",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
-    "@ngmodule/material-carousel": "^0.6.0",
     "@swimlane/ngx-charts": "^20.5.0",
+    "animate.css": "^4.1.1",
+    "ngx-owl-carousel": "^2.0.7",
+    "ngx-owl-carousel-o": "^16.0.0",
+    "ngx-slick-carousel": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xng-breadcrumb": "^10.0.2",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
