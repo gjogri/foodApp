@@ -463,3 +463,23 @@ img {
   margin-bottom: 10px;
   margin-top: -15px;
 }
+
+// LOGO
+.grid-tile-content {
+  position: relative;
+}
+
+.grid-tile-content h3 {
+  position: relative;
+  z-index: 1; /* Ensures the text is on top of other content */
+}
+
+.grid-tile-content img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire area */
+  z-index: -1; /* Places the image behind the text */
+}

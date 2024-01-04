@@ -25,7 +25,7 @@ export class CarouselComponent implements OnInit {
         alt: 'Image 1',
       },
       {
-        src: 'https://media.istockphoto.com/id/1148762903/photo/cook-preparing-bacon-slices-with-garlic-and-hot-pepper-and-broccoli-in-a-pan.jpg?s=2048x2048&w=is&k=20&c=qgum4MoinLkn-pijmXsQGfG4ERiXfbfMGU9-ToofZ_s=',
+        src: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQBhIgqH6xbpMa9NmBo_AYKoGC8EEmsWneFi6sPwABFXpz38MjI',
         alt: 'Image 1',
       },
     ];
