@@ -1,0 +1,112 @@
+
+.recipe-card {
+    // width: 100%; 
+    margin-bottom: 20px;
+    border-radius: 15px;
+    display: flex;
+    margin-right: 10px;
+    &__cover {
+      cursor: pointer;
+      background:#EEE;
+      border-radius: 15px;    
+      position: relative;
+      height: 350px;
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 0;
+      transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  
+      &-details {
+        z-index: 20;
+        color: white;
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+    }
+  
+    &__img {
+      display: flex;
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease-in;
+      }
+    }
+   
+    &__cover:hover &__img {
+      img {
+        transform: scale(1.1);
+      }
+    }
+    &__servings,
+    &__duration {
+      background: rgba(52, 73, 94, 0.8);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 10px;
+      text-align: center;
+      font-size: 0.3em;
+      padding:9px;
+
+      transform: translatex(-120%);
+      transition: transform 0.3s ease-in;
+      text-transform: uppercase;
+    }
+    &__cover:hover &__servings,
+    &__cover:hover &__duration {
+      transform: translatex(0);
+    }
+    &__servings--show,
+    &__duration--show {
+      transform: translatex(0);
+    }
+    &__servings span,
+    &__duration span {
+      display: block;
+      font-size: 3em;
+    }
+    &__info {
+      position: absolute;
+      bottom: 0;
+      background: rgb(255, 255, 255);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 25%,
+        rgba(0, 0, 0, 0.6) 100%
+      );
+      padding: 0 20px;
+      transition: transform 0.3s ease-in;
+      transform: translateY(45%);
+    }
+    &__cover:hover &__info {
+      transform: translateY(0%);
+    }
+    &__info--show {
+      transform: translateY(0%);
+    }
+    &
+    .recipe-card__title h1 {
+      opacity: 0; 
+      transition: opacity 0.3s ease-in-out; 
+    }
+    .recipe-card__cover:hover .recipe-card__title h1 {
+      opacity: 1; 
+    }
+  }
+  
