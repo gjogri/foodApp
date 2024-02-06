@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 const materialModules = [
   MatToolbarModule,
@@ -32,6 +33,7 @@ const materialModules = [
     CarouselComponent,
     JokesDialogComponent,
     FooterComponent,
+    RecipeCardComponent,
   ],
   imports: [...materialModules, CarouselModule, CommonModule, BrowserModule],
   exports: [
@@ -39,6 +41,7 @@ const materialModules = [
     CarouselComponent,
     JokesDialogComponent,
     FooterComponent,
+    RecipeCardComponent,
   ],
 })
 export class SharedModule {}

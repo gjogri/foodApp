@@ -51,9 +51,9 @@
     color="white"
     class="heart-button"
     aria-label="Add to favorites"
-    [class.favorited]="recipe?.isFavorite"
+    [class.favorited]="recipe?.isFavorite || this.isIdPresent"
     (click)="addToFavorites()">
-<mat-icon>{{ recipe?.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+<mat-icon>{{ (recipe?.isFavorite || this.isIdPresent)? 'favorite' : 'favorite_border' }}</mat-icon>
 </button>
 </div>
   </div>

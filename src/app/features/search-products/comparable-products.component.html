@@ -1,0 +1,58 @@
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <mat-form-field >
+      <mat-label>ingredient</mat-label>
+      <input matInput formControlName="query" required>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>minProteinPercent</mat-label>
+      <input matInput formControlName="minProteinPercent" >
+      <mat-error *ngIf="myForm.get('maxProteinPercent')?.hasError('pattern')">Must be a two-digit number.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>maxProteinPercent</mat-label>
+      <input matInput formControlName="maxProteinPercent" >
+      <mat-error *ngIf="myForm.get('maxProteinPercent')?.hasError('pattern')">Must be a two-digit number.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>minFatPercent</mat-label>
+      <input matInput formControlName="minFatPercent" >
+      <mat-error *ngIf="myForm.get('maxProteinPercent')?.hasError('pattern')">Must be a two-digit number.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>maxFatPercent</mat-label>
+      <input matInput formControlName="maxFatPercent" >
+      <mat-error *ngIf="myForm.get('maxProteinPercent')?.hasError('pattern')">Must be a two-digit number.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>minCarbsPercent </mat-label>
+      <input matInput formControlName="minCarbsPercent" >
+      <mat-error *ngIf="myForm.get('maxProteinPercent')?.hasError('pattern')">Must be a two-digit number.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>maxCarbsPercent</mat-label>
+      <input matInput formControlName="maxCarbsPercent" >
+      <mat-error *ngIf="myForm.get('maxProteinPercent')?.hasError('pattern')">Must be a two-digit number.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Submit</button>
+  </form>
+  <div>
+    <h2 class="title " *ngIf="myForm.valid && allRecipes.length >0">{{category}} recipes</h2>
+    <h2 class="title" *ngIf="!myForm.valid || allRecipes.length<=0">No Recipe Founded</h2>
+
+    <div class="line custom-line" *ngIf="myForm.valid"></div>
+    
+  </div>
+  <div class="square-container">
+    <div class="row"> 
+  <div   *ngFor="let recipe of allRecipes">
+    <app-recipe-card [recipe]="recipe"></app-recipe-card>
+
+   </div>
+  </div>
+  </div>

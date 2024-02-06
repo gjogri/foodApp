@@ -2,8 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { recipeService } from 'src/app/services/recipeService';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-foodItem',
   templateUrl: './foodItem.component.html',
@@ -26,8 +26,19 @@ export class FoodItemComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.category = params['category'] || null;
-      if (this.category) {
-        this.getRecipes(this.category, this.numberOfRecipes);
+      // if (this.category) {
+      //   this.getRecipes(this.category, this.numberOfRecipes);
+      // }
+
+      if (this.category === 'favourite-recipes') {
+        this.getAllFavorites();
+        console.log('isInFaV=RECIPEs');
+      } else {
+        if (this.category !== null) {
+          this.getRecipes(this.category, this.numberOfRecipes);
+        } else {
+          console.log('Category is null. Handle appropriately.');
+        }
       }
     });
   }
@@ -60,5 +71,29 @@ export class FoodItemComponent implements OnInit {
 
   getRecipeInformation(recipeId: number) {
     this.router.navigate(['/recipes', recipeId]);
+  }
+
+  getRecipe(id: number) {
+    this.recipeService.getRecipeById(id).subscribe(
+      (recipe: RecipeModel) => {
+        this.recipes.push(recipe);
+        console.log('this.favoriteRecipes', this.recipes);
+      },
+      (error) => {
+        console.error('Error fetching recipe:', error);
+      }
+    );
+  }
+
+  getAllFavorites() {
+    const favoritesData = localStorage.getItem('favorites');
+    let favoritesList: number[] = [];
+    if (favoritesData) {
+      favoritesList = JSON.parse(favoritesData);
+      favoritesList.forEach((id: number) => {
+        this.getRecipe(id);
+      });
+    }
+    console.log('favoritesList', favoritesList);
   }
 }

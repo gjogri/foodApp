@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { Location } from '@angular/common';
 import { recipeService } from 'src/app/services/recipeService';
-import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -14,12 +14,15 @@ export class RecipeComponent implements OnInit {
   currentId: number | undefined;
   mealPlanDayDate: string = '';
   activeTab: string = 'Ingredients';
-
+  storedItem = '';
+  localStorageValues: any[] = [];
+  isIdPresent: boolean = false;
   constructor(
     private recipeService: recipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +37,20 @@ export class RecipeComponent implements OnInit {
       .subscribe((date) => (this.mealPlanDayDate = date));
 
     this.route.queryParams.subscribe((params) => {
-      console.log('params', params);
       this.mealPlanDayDate = params['date'];
-      console.log('this.selectedDate on INIT:', this.mealPlanDayDate);
     });
+
+    const favoritesData = localStorage.getItem('favorites');
+    if (favoritesData) {
+      let favoritesList: any[] = [];
+      if (favoritesData) {
+        favoritesList = JSON.parse(favoritesData);
+
+        if (favoritesList.includes(this.currentId)) {
+          this.isIdPresent = true;
+        }
+      }
+    }
   }
 
   getRecipeById(id: number) {
@@ -50,19 +63,17 @@ export class RecipeComponent implements OnInit {
           (this.recipe.instructions = this.stripHtmlTags(
             this.recipe.instructions
           ));
-
-        console.log('Fetched recipe:', this.recipe);
       });
   }
   stripHtmlTags(html: string): string {
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return doc.body.textContent || '';
   }
-
   addToFavorites() {
     if (this.recipe) {
-      this.recipe.isFavorite = !this.recipe.isFavorite;
-      console.log(this.recipe.isFavorite);
+      this.recipeService.addToFavorites(this.recipe);
+    } else {
+      console.error('Recipe is undefined');
     }
   }
 
@@ -70,17 +81,14 @@ export class RecipeComponent implements OnInit {
     const queryParams = this.route.snapshot.queryParams;
 
     if (queryParams.hasOwnProperty('date')) {
-      // 'date' parameter exists, navigate to meal-plan-day with the existing date
       this.router.navigate(['/meal-plan-day'], {
         queryParams: { date: queryParams['date'] },
       });
     } else {
-      // 'date' parameter doesn't exist, navigate back or to another route
       this.location.back();
     }
   }
   toggleActive(tabName: string): void {
     this.activeTab = tabName;
-    // Add logic here to handle tab switching or content display based on the selected tab
   }
 }

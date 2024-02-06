@@ -19,7 +19,7 @@
     <mat-grid-tile [routerLink]="['/comparable-products']">
       <img src="https://media.istockphoto.com/id/1363367259/vector/question-mark-made-of-fruits-and-vegetables-vector-cartoon-illustration.jpg?s=612x612&w=0&k=20&c=hrNUoSFt7dN3TgyRw1GsiyPmLNSbMCC6OV0a7vNynv0=" alt="Product Information Image">
       <mat-grid-tile-footer>
-        <h3>GET PRODUCT INFORMATION</h3>
+        <h3>  SEARCH PRODUCTS BY INGREDIENTS</h3>
       </mat-grid-tile-footer>
     </mat-grid-tile>
 
@@ -113,30 +113,43 @@
 
 
 
-<div class="card-container container"    > 
+<div class="card-container container"> 
+  <h1 class="title">FAVORITES </h1>
+  <div *ngIf="favorite" >
   <div class="row">
-  <div class="card-hover col-md-4" *ngFor="let recipe of randomRecipes" >
+  <div class="card-hover col-md-4" *ngFor="let recipe of favoriteRecipes.slice(0, 3)" >
    <div class="card-hover__content">
      <h3 class="card-hover__title">
        {{recipe.title}}
      </h3>
      <p class="card-hover__text">{{sanitizeInstructions(recipe.instructions) | slice:0:100}}...</p>
      <a  (click)="getRecipeId(recipe.id)" class="card-hover__link">
-       <span    >Learn How</span>
+       <span>view more</span>
        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-       </svg>        
+       </svg>       
      </a>
    </div>
    <div class="card-hover__extra">
-     <!-- <h4>Learn <span>now</span> and get <span>40%</span> discount!</h4> -->
+
    </div>
    <img *ngIf="recipe.image" [src]="recipe.image"  alt="{{ recipe.title }}">
    <img *ngIf="!recipe.image" src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"  alt="{{ recipe.title }}">
  </div>
 </div>
-</div>
 
+<h3 class="titles" [routerLink]="['/foodItems']" [queryParams]="{ category: 'favourite-recipes' }">
+  view all favorites
+  <svg fill="none" viewBox="0 0 16 16" width="16" height="13" stroke-width="1.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M8 2l6 6-6 6M2 8h12"></path>
+  </svg>
+</h3>
+</div>
+<div *ngIf="!favorite">
+  <!-- Display this content when favorite is false -->
+  <p>No Favorite Recipes</p>
+</div>
+</div>
 
 
 

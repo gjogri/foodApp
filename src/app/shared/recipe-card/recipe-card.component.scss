@@ -5,6 +5,7 @@
     border-radius: 15px;
     display: flex;
     margin-right: 10px;
+    
     &__cover {
       cursor: pointer;
       background:#EEE;
@@ -110,3 +111,30 @@
     }
   }
   
+
+//   heart
+
+.heart-position{
+    display: absolute;
+    justify-content: flex-end;
+  }
+  .heart-button  {
+      transition: color 0.3s ease; 
+      position: relative
+    
+    }
+    
+    .heart-button:hover {
+      color: red; 
+    }
+    .heart-button.favorited mat-icon {
+      color: red;
+    }
+    .arrow-back{
+        margin-left: 150px;
+        font-size: 30px;
+        margin-top: 100px;
+       }
+       .arrow-back:hover{
+        color:red
+       }

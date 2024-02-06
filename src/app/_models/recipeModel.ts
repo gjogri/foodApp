@@ -28,4 +28,5 @@ export class RecipeModel {
   servings!: number;
   summary!: string;
   preparationMinutes!: number;
+  name!: string;
 }

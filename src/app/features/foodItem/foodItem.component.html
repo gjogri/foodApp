@@ -12,7 +12,8 @@
   <div class="square-container">
     <div class="row"> 
   <div class="recipe-card"   *ngFor="let recipe of recipes.slice(startIndex,endIndex)">
-    <div (click)="getRecipeInformation(recipe.id)" class="recipe-card__cover">
+    <app-recipe-card [recipe]="recipe"></app-recipe-card>
+    <!-- <div (click)="getRecipeInformation(recipe.id)" class="recipe-card__cover">
       <div class="recipe-card__img">
         <img
           [src]="recipe.image" alt="{{ recipe.title }}">
@@ -27,11 +28,12 @@
           </div> 
         </div>
       </div>
-    </div>
+    </div> -->
    </div>
   </div>
   </div>
 <div> 
+ 
 <mat-paginator [length]="recipes.length"
     [pageSize]="24"
     [pageSizeOptions]="[24,36,42]"
