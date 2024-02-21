@@ -1,13 +1,18 @@
 
-
-  
-
-<nav>
-  <ul class="menuItems">
-    <li><a href='#' data-item='Home' routerLink="/home" >Home</a></li>
-    <li><a href='#' data-item='About'  >About</a></li>
-    <li><a  data-item='Recipes'>Recipes</a></li>
-    <li><a  data-item='GET MEAL PLAN' routerLink="/meal-plan-day"  [queryParams]="{ date: todayDate }" >GET MEAL PLAN</a></li>
-    <li><a  data-item='Contact' (click)="scrollToFooter()">Contact</a></li>
-  </ul>
+<nav class="navbar">
+  <div class="menu-container">
+ 
+    <button class="hamburger" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen ? 'true' : 'false'" aria-label="Menu" aria-controls="menu">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <ul class="menu" [class.open]="isMenuOpen" id="menu">
+      <li><a href='#' data-item='Home' routerLink="/home" >Home</a></li>
+      <li><a href='#' data-item='About'  >About</a></li>
+      <li><a  data-item='Recipes'>Recipes</a></li>
+      <li><a  data-item='GET MEAL PLAN' routerLink="/meal-plan-day"  [queryParams]="{ date: todayDate }" >GET MEAL PLAN</a></li>
+      <li><a  data-item='Contact' (click)="scrollToFooter()">Contact</a></li>
+    </ul>
+  </div>
 </nav>
