@@ -1,17 +1,19 @@
+
   .card {
     font-family: Roboto, sans-serif;
     border-radius: 10px;
-    width: 800px;
-   
     background-color: #ffffff;
-    padding: 20px;
-    margin:0 auto;
-    h4 {
-      font-size: xx-large;
-    }
+    padding: 30px;
+    margin: 0 auto;
+    text-align: center;
   }
   
-
+  .card h4 {
+    font-size: xx-large;
+  }
   
-
-  
+  @media (max-width: 768px) {
+    .card {
+      width: 90%; 
+    }
+  }

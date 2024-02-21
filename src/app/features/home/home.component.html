@@ -4,7 +4,7 @@
   <app-carousel></app-carousel>
 </div>
 <div class="mat-grid"> 
-  <mat-grid-list cols="3" rowHeight="400px">
+  <mat-grid-list [cols]="getGridCols()" rowHeight="400px">
 
     <mat-grid-tile [routerLink]="['/meal-plan-day']" [queryParams]="{ date: todayDate }">
       <img src="https://img.freepik.com/premium-vector/healthy-eating-isolated-cartoon-vector-illustration-set_107173-32612.jpg"  alt="Meal Plan Day Image">
@@ -33,7 +33,7 @@
   </div>
 
 
-<div class="square-container">
+<div class="square-container view-point">
   <div class="row">
     <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'burger',}"> 
       <div class="wrap-element"> 
@@ -152,14 +152,13 @@
 </div>
 
 
-
-
-
-<div class=" jokes-background">
-  <div class="row col-md-12" > 
-    <div class="col-md-3"> 
-<app-jokes-dialog></app-jokes-dialog>
-</div>  
+<div class="jokes-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12"> 
+        <app-jokes-dialog></app-jokes-dialog>
+      </div>
+    </div>
+  </div>
 </div>
- </div>    
 

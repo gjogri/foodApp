@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
@@ -16,7 +17,11 @@ export class HomeComponent implements OnInit {
   todayDate: string = '';
   numberOfRecipe = 3;
   favorite = false;
-  constructor(private recipeService: recipeService, private router: Router) {}
+  constructor(
+    private recipeService: recipeService,
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
   ngOnInit(): void {
     this.getRandomRecipes(this.numberOfRecipe);
@@ -69,5 +74,8 @@ export class HomeComponent implements OnInit {
         this.getRecipe(id);
       });
     }
+  }
+  getGridCols(): number {
+    return this.breakpointObserver.isMatched(Breakpoints.Handset) ? 1 : 3;
   }
 }
