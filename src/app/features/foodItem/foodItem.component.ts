@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { recipeService } from 'src/app/services/recipeService';
@@ -17,6 +17,8 @@ export class FoodItemComponent implements OnInit {
   startIndex = 0;
   endIndex = 24;
   pageIndex = 1;
+  currentId: number | undefined;
+  isIdPresent: boolean = false;
   constructor(
     private recipeService: recipeService,
     private route: ActivatedRoute,
@@ -26,21 +28,21 @@ export class FoodItemComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.category = params['category'] || null;
-      // if (this.category) {
-      //   this.getRecipes(this.category, this.numberOfRecipes);
-      // }
 
       if (this.category === 'favourite-recipes') {
         this.getAllFavorites();
-        console.log('isInFaV=RECIPEs');
+        console.log(this.category);
       } else {
         if (this.category !== null) {
+          console.log(this.category);
           this.getRecipes(this.category, this.numberOfRecipes);
+          /// treba da im se izboi srcevo ako se vo favorites veke
         } else {
           console.log('Category is null. Handle appropriately.');
         }
       }
     });
+    console.log('HERE');
   }
 
   getRecipes(ingredient: string, numberOfRecipes: number) {
@@ -53,6 +55,21 @@ export class FoodItemComponent implements OnInit {
             recipe.results.forEach((items: RecipeModel[]) => {
               this.recipes.push(items);
             });
+            const ids = this.recipes.map((recipe: RecipeModel) => recipe.id);
+            console.log('ID:', ids);
+            const favoritesData = localStorage.getItem('favorites');
+            console.log('favoritesData:', favoritesData);
+            console.log('recipesss', this.recipes);
+            if (favoritesData) {
+              let favoritesList: any[] = [];
+              if (favoritesData) {
+                favoritesList = JSON.parse(favoritesData);
+
+                if (favoritesList.includes(this.currentId)) {
+                  this.isIdPresent = true;
+                }
+              }
+            }
           }
         },
         (error) => {

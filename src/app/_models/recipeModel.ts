@@ -24,9 +24,7 @@ export class RecipeModel {
   extendedIngredients!: ExtendedIngredient[];
   instructions!: string;
   description!: string;
-  isFavorite!: boolean;
   servings!: number;
   summary!: string;
-  preparationMinutes!: number;
-  name!: string;
+  isFavorite!: boolean;
 }

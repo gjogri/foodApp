@@ -18,7 +18,7 @@
       overflow: hidden;
       z-index: 0;
       transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
-  
+      
       &-details {
         z-index: 20;
         color: white;
@@ -31,7 +31,7 @@
     &__img {
       display: flex;
       position: absolute;
-      z-index: 10;
+      // z-index: 10;
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -41,7 +41,7 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
-        transition: transform 0.3s ease-in;
+        transition: transform 0.9s ease-in;
       }
     }
    
@@ -112,29 +112,29 @@
   }
   
 
-//   heart
 
-.heart-position{
-    display: absolute;
-    justify-content: flex-end;
-  }
-  .heart-button  {
-      transition: color 0.3s ease; 
-      position: relative
-    
-    }
-    
-    .heart-button:hover {
-      color: red; 
-    }
-    .heart-button.favorited mat-icon {
-      color: red;
-    }
-    .arrow-back{
-        margin-left: 150px;
-        font-size: 30px;
-        margin-top: 100px;
-       }
-       .arrow-back:hover{
-        color:red
-       }
+  
+      
+ 
+     
+      .heart-position {
+        position: absolute;
+        top: 10px; 
+        right: 10px; 
+        z-index: 30!important; 
+      }
+      
+      .heart-button {
+        color: white; 
+        transition: color 0.3s ease; 
+        position: relative; 
+      
+        &:hover {
+          color: red; 
+        }
+      
+        &.favorited {
+          color: red; 
+        }
+      }
+      

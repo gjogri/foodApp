@@ -1,7 +1,7 @@
 
   <div class="container">
     <xng-breadcrumb></xng-breadcrumb>
-    <!-- Your other component content -->
+ 
   </div>
   <div>
     <h2 class="title " >{{category}}</h2>
@@ -13,22 +13,6 @@
     <div class="row"> 
   <div class="recipe-card"   *ngFor="let recipe of recipes.slice(startIndex,endIndex)">
     <app-recipe-card [recipe]="recipe"></app-recipe-card>
-    <!-- <div (click)="getRecipeInformation(recipe.id)" class="recipe-card__cover">
-      <div class="recipe-card__img">
-        <img
-          [src]="recipe.image" alt="{{ recipe.title }}">
-      </div>
-      <div class="recipe-card__cover-details">
-        <div id="recipe-card__duration" class="recipe-card__duration">
-          <p ><span>view recipe</span></p>
-        </div>
-        <div id="recipe-card__info" class="recipe-card__info">
-          <div class="recipe-card__title">
-            <h1>{{ recipe.title }}</h1>
-          </div> 
-        </div>
-      </div>
-    </div> -->
    </div>
   </div>
   </div>

@@ -1,3 +1,5 @@
+@import '../../../assets/styles/color-scheme.scss';
+
 
 .image-container {
     position: relative;
@@ -57,7 +59,7 @@
   }
   .search-overlay {
     position: absolute;
-    top: 25%; /* Adjust the position from the top */
+    top: 25%; 
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -110,15 +112,11 @@
 
 
   .max-width-container {
-    max-width: 1200px; /* Set your desired maximum width */
-    margin: 0 auto; /* Center the container horizontally */
+    max-width: 1200px; 
+    margin: 0 auto; 
     background-color: #99c946;
   }
 
-  .container {
-    width: 80%;
-    margin: auto;
-  }
   
   .recipe-card {
     position: relative;
@@ -170,35 +168,32 @@
 
   // NEWW 
 
-  // .square-container {
-  //   background-color: #ebe7df;
-  //   display: flex;
-  // flex-direction: column;
-  // justify-content: center; 
-  // align-items: center; 
-  // height: 100vh; 
-  // padding-right: 15px;
-  // padding-left: 15px;
-  // margin-bottom: 30px;
-  // }
   .square-container {
-    background-color: #ebe7df;
+    background-color: $primaryColor;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Change height to min-height */
-    padding: 30px 15px; /* Add padding */
-    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
-}
+    min-height: 100vh; 
+    padding: 30px 15px; 
+    box-sizing: border-box; 
+   
   
-  .row {
-    display: flex;
-    flex-wrap: wrap;
+  // .row {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: center;
+  //   margin-right: -15px;
+  //   margin-left: -15px;
+  //   gap: 10px;
+    
+  // }
+
+  .favorite-row{
+    display: inline-flex;
+    flex-direction: column;
     justify-content: center;
-    margin-right: -15px;
-    margin-left: -15px;
-    gap: 10px;
+    flex-wrap: wrap; 
   }
   
   .square {
@@ -213,16 +208,19 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+    cursor: pointer;
    
   }
   .material-icons {
     font-size: 60px; 
     color: #85b72c;
+    
   }
   .icon-name {
     margin-top: 20px; 
     font-size: larger;
     font-weight: 500;
+  
   }
   .recipe-count {
     margin-top: 25px;
@@ -234,6 +232,7 @@
     background-color: #dde6ce;
     color:#85b72c;
     font-size: 12px ;
+  
   }
 
   .wrap-element:hover{
@@ -265,42 +264,36 @@
 
  
 
-  // .mat-grid-tile-footer {
-  //   padding-top: 100px;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   transition: background-color 0.5s; 
-  //   background-color: #f7f4ee!important;
-  //   color: #99c946 !important;
-  
-  //   &:hover {
-  //     color:  #f7f4ee!important;
-  //     background-color: #99c946!important;
-  //   }
-  
-  //   h3 {
-  //     font-family: 'Arial', sans-serif; 
-  //     font-size: 16px; 
-  //     font-weight: bold; 
-      
-  //   }
-  // }
+ 
   .mat-grid-tile-footer {
     padding-top: 100px;
     padding-bottom: 100px;
     display: flex;
-    flex-direction: column; /* Positions the elements vertically */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: background-color 0.5s; 
     background-color: #f7f4ee!important;
     color: #99c946 !important;
+    &:hover {
+      color:  #f7f4ee!important;
+      background-color: #99c946!important;
+     
+    }
+
+    h3 {
+      font-family: 'Arial', sans-serif; 
+      font-size: 16px; 
+      font-weight: bold; 
+
+    }
+  }
 }
 
 .mat-grid-tile-footer:hover {
     color: #f7f4ee!important;
     background-color: #99c946!important;
+     cursor: pointer;
 }
 
 .mat-grid-tile-footer h3 {
@@ -311,27 +304,29 @@
 
 
 //// CARDS
-/// 
-/// 
-/// 
-/// 
-/// \
+ 
+ .container {
+
+}
+
+
 .card-container{
-  margin-bottom: 300px;
-  margin-top: 220px;
+  // display: flex;
+
+  // // width: 80%;
+  // // margin: auto;
+  // margin-bottom: 300px;
+  //   margin-top: 220px;
+  //   flex-direction: column!important;
+  //   align-items: center
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  // @media screen and (max-width: 768px) {
-  //   .card-hover {
-  //     width: 100%; // Adjust width to fit smaller screens
-  //     height: 100%; // Allow height to adjust based on content
-  //     align-items: center;
-  //   }
-  // }
+  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: flex-start;
 
 }
 .card-hover {
+  flex: 0 0 auto;
+  margin-right: 20px;
   border-radius: 8px;
   margin-left: 100px;
   $root: &;
@@ -498,7 +493,7 @@ img {
 }
 
 .jokes-background{
-  background-color:#ebe7df;
+  background-color: $primaryColor;
   padding: 100px;
 }
 
@@ -515,7 +510,7 @@ img {
 
 .grid-tile-content h3 {
   position: relative;
-  z-index: 1; /* Ensures the text is on top of other content */
+  z-index: 1; 
 }
 
 .grid-tile-content img {
@@ -524,8 +519,8 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire area */
-  z-index: -1; /* Places the image behind the text */
+  object-fit: cover; 
+  z-index: -1; 
 }
 
 .title {
@@ -558,27 +553,40 @@ img {
 }
 @media (min-width: 968px)  and (max-width:1268px){
   .square-container {
-    min-height: auto; /* Remove min-height on smaller screens */
+    min-height: auto; 
 }
 }
 @media (min-width: 768px) and (max-width: 968px) {
   .square-container {
-    min-height: auto; /* Remove min-height on smaller screens */
+    min-height: auto; 
 }
-
+.title {
+  font-size: 50px; 
+  margin-bottom: 38px; 
+}
 
 }
 
 @media (min-width: 576px)  and (max-width:768px){
   .square-container {
-    min-height: auto; /* Remove min-height on smaller screens */
+    min-height: auto; 
 }
-
+.title {
+  font-size: 42px; 
+  margin-bottom: 35px; 
+}
 
 }
 @media (max-width: 576px) {
   .square-container {
-    min-height: auto; /* Remove min-height on smaller screens */
+    min-height: auto; 
+}.title {
+  font-size: 36px; 
+  margin-bottom: 30px; 
 }
+}
+  
 
+.custom-row{
+  display: flex;
 }

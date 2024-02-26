@@ -1,33 +1,33 @@
-<div class="square-container">
+ <div class="square-container">
     <div class="row"> 
-  <div class="recipe-card" >
-    <div (click)="getRecipeInformation(recipe.id)" class="recipe-card__cover">
-      <div class="recipe-card__img">
-        <img
-          [src]="recipe.image" alt="{{ recipe.title || recipe.name }}" (error)="imageError(recipe)">
-      </div>
-      <div class="recipe-card__cover-details">
-        <div id="recipe-card__duration" class="recipe-card__duration">
-          <p ><span>view recipe</span></p>
-        </div>
-        <div id="recipe-card__info" class="recipe-card__info">
-          <div class="recipe-card__title">
-            <h1>{{ recipe.title || recipe.name }}</h1>
-          </div> 
+      <div class="recipe-card" >
+        <div  class="recipe-card__cover">
+          <div class="recipe-card__img">
+            <img [src]="recipe.image" alt="{{ recipe.title || recipe.title }}" (error)="imageError(recipe)">
+            <div class="heart-position">
+              <button mat-icon-button
+                      color="white"
+                      class="heart-button"
+                      aria-label="Add to favorites"
+                      [class.favorited]="recipe.isFavorite || this.isIdPresent"
+                      (click)="addToFavorites()">
+                <mat-icon>{{ (recipe.isFavorite || this.isIdPresent)? 'favorite' : 'favorite_border' }}</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="recipe-card__cover-details">
+            <div id="recipe-card__duration" class="recipe-card__duration">
+              <p ><span  (click)="getRecipeInformation(recipe.id)" >view recipe</span></p>
+            </div>
+            <div id="recipe-card__info" class="recipe-card__info">
+              <div class="recipe-card__title">
+                <h1>{{ recipe.title || recipe.title }}</h1>
+              </div> 
+            </div>
+          </div>
         </div>
       </div>
     </div>
-   </div>
-  </div>
-  <div class="heart-position"> 
-    <button mat-icon-button
-    color="white"
-    class="heart-button"
-    aria-label="Add to favorites"
-    [class.favorited]="recipe.isFavorite || this.isIdPresent"
-    (click)="addToFavorites()">
-<mat-icon>{{ (recipe.isFavorite || this.isIdPresent)? 'favorite' : 'favorite_border' }}</mat-icon>
-    </button>
-</div>
-
- </div>
+  </div> 
+  
+  

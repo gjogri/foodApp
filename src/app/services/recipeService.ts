@@ -99,15 +99,19 @@ export class recipeService {
 
   addToFavorites(recipe: RecipeModel) {
     if (recipe) {
+      console.log('IS FAVORITED', recipe.isFavorite);
       recipe.isFavorite = !recipe.isFavorite;
       if (recipe.isFavorite) {
+        ('test');
         this.addToFavoritesLocalStorage(recipe.id);
+
         this.snackBar.open('added to favorites', '', {
           duration: 1000,
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
       } else {
+        recipe.isFavorite = false;
         this.removeFavoritesFromLocalStorage(recipe.id);
         this.snackBar.open('removed from favorites', '', {
           duration: 1000,

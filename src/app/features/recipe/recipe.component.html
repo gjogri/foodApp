@@ -6,7 +6,7 @@
 </ng-template>
 <div class="container" > 
   <div>
-    <h2 class="title " >{{recipe?.title}}</h2>
+    <h2 class="title " >{{recipe.title}}</h2>
     <div class="line custom-line"></div>
     
   </div>
@@ -16,15 +16,15 @@
   <div class='recipe-card'>
     <div style="position: relative; width: 100%; height: 300px; overflow: hidden;">
       <img
-        [src]="recipe?.image"
-        alt="{{ recipe?.title }}"
+        [src]="recipe.image"
+        alt="{{ recipe.title }}"
         class="recipe-image"
         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto;"
       />
     </div>
     
     <div class="recipe-card__body">
-      <h1 class="recipe-card__heading">{{recipe?.title}}</h1>
+      <h1 class="recipe-card__heading">{{recipe.title}}</h1>
       <h2 class="recipe-card__subhead">Crunchy around the edges, softer in the center, these oatmeal cookies feature the nutty taste and nubbly texture of oats. </h2>
       
        <ul class="recipe-card__nav">
@@ -47,13 +47,13 @@
     </ul>
     </div>
     <div class="heart-position"> 
-    <button mat-icon-button
-    color="white"
-    class="heart-button"
-    aria-label="Add to favorites"
-    [class.favorited]="recipe?.isFavorite || this.isIdPresent"
-    (click)="addToFavorites()">
-<mat-icon>{{ (recipe?.isFavorite || this.isIdPresent)? 'favorite' : 'favorite_border' }}</mat-icon>
+      <button mat-icon-button
+      color="white"
+      class="heart-button"
+      aria-label="Add to favorites"
+      [class.favorited]="recipe.isFavorite || this.isIdPresent"
+      (click)="addToFavorites()">
+<mat-icon>{{ (recipe.isFavorite || this.isIdPresent)? 'favorite' : 'favorite_border' }}</mat-icon>
 </button>
 </div>
   </div>

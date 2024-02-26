@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
   weekPlanMeal: any | undefined;
   todayDate: string = '';
   numberOfRecipe = 3;
-  favorite = false;
+  favorite: boolean = false;
+
   constructor(
     private recipeService: recipeService,
     private router: Router,
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('in ng on init');
     this.getRandomRecipes(this.numberOfRecipe);
     this.todayDate = new Date().toISOString().split('T')[0];
     this.getLatestFavorites();
@@ -32,7 +34,6 @@ export class HomeComponent implements OnInit {
   getRandomRecipes(numberOfRecipe: number) {
     this.recipeService.getRandomRecipes(numberOfRecipe).subscribe(
       (recipes: RecipeModel[]) => {
-        console.log('recieps', recipes);
         this.randomRecipes = recipes;
       },
       (error) => {
@@ -61,16 +62,17 @@ export class HomeComponent implements OnInit {
   }
 
   getLatestFavorites() {
-    const favoritesData = localStorage.getItem('favorites');
-
     let favoritesList: number[] = [];
-
-    if (favoritesData) {
-      this.favorite = true;
+    const favoritesData = localStorage.getItem('favorites');
+    if (favoritesData != null) {
       favoritesList = JSON.parse(favoritesData);
-      console.log('favoritesList', favoritesList.length);
+    }
+    if (favoritesList.length === 0) {
+      console.log(favoritesData);
+      this.favorite = false;
+    } else {
+      this.favorite = true;
       favoritesList.forEach((id: number) => {
-        console.log('favoritesList1', favoritesList.length);
         this.getRecipe(id);
       });
     }

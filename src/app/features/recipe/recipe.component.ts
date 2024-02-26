@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { Location } from '@angular/common';
 import { recipeService } from 'src/app/services/recipeService';
@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./recipe.component.scss'],
 })
 export class RecipeComponent implements OnInit {
-  recipe: RecipeModel | undefined;
+  recipe: RecipeModel = new RecipeModel();
   currentId: number | undefined;
   mealPlanDayDate: string = '';
   activeTab: string = 'Ingredients';
@@ -41,13 +41,17 @@ export class RecipeComponent implements OnInit {
     });
 
     const favoritesData = localStorage.getItem('favorites');
+
     if (favoritesData) {
       let favoritesList: any[] = [];
       if (favoritesData) {
         favoritesList = JSON.parse(favoritesData);
-
         if (favoritesList.includes(this.currentId)) {
+          console.log(this.currentId);
+          this.recipe.isFavorite = true;
           this.isIdPresent = true;
+        } else {
+          this.recipe.isFavorite = false;
         }
       }
     }
@@ -69,10 +73,14 @@ export class RecipeComponent implements OnInit {
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return doc.body.textContent || '';
   }
+
   addToFavorites() {
-    if (this.recipe) {
+    if (this.recipe && !this.isIdPresent) {
       this.recipeService.addToFavorites(this.recipe);
-    } else {
+      console.log('test');
+      this.isIdPresent = false;
+    } else if (this.recipe && this.isIdPresent) {
+      this.isIdPresent = false;
       console.error('Recipe is undefined');
     }
   }

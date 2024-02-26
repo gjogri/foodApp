@@ -10,7 +10,7 @@ import { JokesDialogComponent } from './jokes-dialog/jokes-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { FooterComponent } from './footer/footer.component';
+
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -32,7 +32,6 @@ const materialModules = [
     ErrorDialogComponent,
     CarouselComponent,
     JokesDialogComponent,
-    FooterComponent,
     RecipeCardComponent,
   ],
   imports: [...materialModules, CarouselModule, CommonModule, BrowserModule],
@@ -40,7 +39,6 @@ const materialModules = [
     ...materialModules,
     CarouselComponent,
     JokesDialogComponent,
-    FooterComponent,
     RecipeCardComponent,
   ],
 })

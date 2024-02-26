@@ -27,10 +27,6 @@ export class MealPlanDayComponent implements OnInit {
   selectedChartData: { name: string; value: number }[] = [];
   xAxisLabel = 'gr';
   yAxisLabel = 'Macro Nutrition';
-  showXAxis = true;
-  showYAxis = true;
-  showXAxisLabel = true;
-  showYAxisLabel = true;
   todayDate: string = '';
   selectedAllMeal: boolean = true;
   isSelectedBreakfast: boolean = false;
@@ -92,7 +88,7 @@ export class MealPlanDayComponent implements OnInit {
             this.recipeService.getRecipeById(item.value.id).subscribe(
               (recipe) => {
                 item.imageUrl = recipe.image;
-                item.value.preparationMinutes = recipe.preparationMinutes;
+                item.value.preparationMinutes = recipe.readyInMinutes;
               },
               (error) => {
                 item.imageUrl = this.imageUrlFallback;
