@@ -176,18 +176,19 @@
     align-items: center;
     min-height: 100vh; 
     padding: 30px 15px; 
+    margin-bottom: 30px;
     box-sizing: border-box; 
-   
   
-  // .row {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   justify-content: center;
-  //   margin-right: -15px;
-  //   margin-left: -15px;
-  //   gap: 10px;
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: -15px;
+    margin-left: -15px;
+    gap: 10px;
     
-  // }
+  }
 
   .favorite-row{
     display: inline-flex;
@@ -305,26 +306,14 @@
 
 //// CARDS
  
- .container {
-
-}
-
-
 .card-container{
-  // display: flex;
-
-  // // width: 80%;
-  // // margin: auto;
-  // margin-bottom: 300px;
-  //   margin-top: 220px;
-  //   flex-direction: column!important;
-  //   align-items: center
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  justify-content: flex-start;
+  flex-wrap: nowrap; 
+  justify-content: center;
 
 }
 .card-hover {
+  margin-bottom: 30px;
   flex: 0 0 auto;
   margin-right: 20px;
   border-radius: 8px;
@@ -564,6 +553,11 @@ img {
   font-size: 50px; 
   margin-bottom: 38px; 
 }
+.custom-row{
+  flex-direction: column;
+  margin-top:300px;
+  margin-bottom:300px;
+}
 
 }
 
@@ -575,18 +569,31 @@ img {
   font-size: 42px; 
   margin-bottom: 35px; 
 }
+.custom-row{
+  flex-direction: column;
+  margin-top:300px;
+  margin-bottom:300px;
+}
 
 }
 @media (max-width: 576px) {
-  .square-container {
+  .square-container{
     min-height: auto; 
 }.title {
   font-size: 36px; 
   margin-bottom: 30px; 
+} 
+.custom-row{
+  flex-direction: column;
+  margin-top:300px;
+  margin-bottom:300px;
 }
 }
   
 
 .custom-row{
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh
 }
