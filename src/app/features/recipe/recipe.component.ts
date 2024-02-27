@@ -40,7 +40,6 @@ export class RecipeComponent implements OnInit {
       this.mealPlanDayDate = params['date'];
     });
 
-    this.favorite = this.recipeService.favorite;
     const favoritesData = localStorage.getItem('favorites');
 
     if (favoritesData) {
