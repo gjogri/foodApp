@@ -31,18 +31,14 @@ export class FoodItemComponent implements OnInit {
 
       if (this.category === 'favourite-recipes') {
         this.getAllFavorites();
-        console.log(this.category);
       } else {
         if (this.category !== null) {
-          console.log(this.category);
           this.getRecipes(this.category, this.numberOfRecipes);
-          /// treba da im se izboi srcevo ako se vo favorites veke
         } else {
           console.log('Category is null. Handle appropriately.');
         }
       }
     });
-    console.log('HERE');
   }
 
   getRecipes(ingredient: string, numberOfRecipes: number) {
@@ -56,10 +52,9 @@ export class FoodItemComponent implements OnInit {
               this.recipes.push(items);
             });
             const ids = this.recipes.map((recipe: RecipeModel) => recipe.id);
-            console.log('ID:', ids);
+
             const favoritesData = localStorage.getItem('favorites');
-            console.log('favoritesData:', favoritesData);
-            console.log('recipesss', this.recipes);
+
             if (favoritesData) {
               let favoritesList: any[] = [];
               if (favoritesData) {
@@ -94,7 +89,6 @@ export class FoodItemComponent implements OnInit {
     this.recipeService.getRecipeById(id).subscribe(
       (recipe: RecipeModel) => {
         this.recipes.push(recipe);
-        console.log('this.favoriteRecipes', this.recipes);
       },
       (error) => {
         console.error('Error fetching recipe:', error);
@@ -111,6 +105,5 @@ export class FoodItemComponent implements OnInit {
         this.getRecipe(id);
       });
     }
-    console.log('favoritesList', favoritesList);
   }
 }

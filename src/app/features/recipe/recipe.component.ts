@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeModel } from 'src/app/_models/recipeModel';
 import { Location } from '@angular/common';
 import { recipeService } from 'src/app/services/recipeService';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -17,12 +17,12 @@ export class RecipeComponent implements OnInit {
   storedItem = '';
   localStorageValues: any[] = [];
   isIdPresent: boolean = false;
+  favorite: boolean = false;
   constructor(
     private recipeService: recipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location,
-    private snackBar: MatSnackBar
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +40,7 @@ export class RecipeComponent implements OnInit {
       this.mealPlanDayDate = params['date'];
     });
 
+    this.favorite = this.recipeService.favorite;
     const favoritesData = localStorage.getItem('favorites');
 
     if (favoritesData) {
@@ -80,6 +81,7 @@ export class RecipeComponent implements OnInit {
       console.log('test');
       this.isIdPresent = false;
     } else if (this.recipe && this.isIdPresent) {
+      this.recipeService.removeFavoritesFromLocalStorage(this.recipe.id);
       this.isIdPresent = false;
       console.error('Recipe is undefined');
     }

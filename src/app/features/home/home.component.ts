@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('in ng on init');
     this.getRandomRecipes(this.numberOfRecipe);
     this.todayDate = new Date().toISOString().split('T')[0];
     this.getLatestFavorites();

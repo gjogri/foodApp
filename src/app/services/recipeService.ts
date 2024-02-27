@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, forkJoin, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { RecipeModel } from '../_models/recipeModel';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class recipeService {
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
+  private baseUrl = 'https://api.spoonacular.com';
   private apiUrl = 'https://api.spoonacular.com/recipes';
   private apiSearchUrl =
     'https://api.spoonacular.com/food/ingredients/search?sort=calories&sortDirection=desc&';
@@ -49,12 +50,12 @@ export class recipeService {
   }
 
   getRecipeByIngredient(ingredient: string, numberOfRecipes: number) {
-    const url = `https://api.spoonacular.com/recipes/complexSearch?query=${ingredient}&maxFat=1000&number=${numberOfRecipes}&apiKey=5aabdf9ebc6846b590b4cea0b46247fc`;
+    const url = `${this.baseUrl}/recipes/complexSearch?query=${ingredient}&maxFat=1000&number=${numberOfRecipes}&apiKey=5aabdf9ebc6846b590b4cea0b46247fc`;
     return this.http.get<RecipeModel>(url);
   }
 
   getWeekPlanMeal() {
-    const url = `https://api.spoonacular.com/mealplanner/dasda/week/2023-11-20?apiKey=${this.apiKey}`;
+    const url = `${this.baseUrl}/mealplanner/dasda/week/2023-11-20?apiKey=${this.apiKey}`;
     return this.http.get<any>(url);
   }
 
@@ -65,7 +66,7 @@ export class recipeService {
   }
 
   getMealPlanDay(date: string) {
-    const url = `https://api.spoonacular.com/mealplanner/gjorgi123/day/${date}?hash=${this.hash}&apiKey=${this.apiKey}`;
+    const url = `${this.baseUrl}/mealplanner/gjorgi123/day/${date}?hash=${this.hash}&apiKey=${this.apiKey}`;
     return this.http.get<any>(url);
   }
 
@@ -79,7 +80,7 @@ export class recipeService {
   }
 
   getRandomJokes() {
-    const url = `https://api.spoonacular.com/food/jokes/random?apiKey=${this.apiKey}`;
+    const url = `${this.baseUrl}/food/jokes/random?apiKey=${this.apiKey}`;
     return this.http.get<any>(url);
   }
 

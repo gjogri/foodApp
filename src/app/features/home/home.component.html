@@ -41,7 +41,7 @@
       lunch_dining
       </span>
       <div class="icon-name">Burger's</div>
-      <div class="recipe-count">56 Recipes</div>
+     
     </div>
     </div>
     <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'pizza',}">
@@ -50,21 +50,21 @@
       local_pizza
       </span> 
       <p class="icon-name">Pizza's</p>
-      <div class="recipe-count">56 Recipes</div>
+    
       </div>
     </div>
     <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'cake',}">
       <div class="wrap-element"> 
        <span class="material-icons"> cake </span>
         <div class="icon-name">Cake's</div>
-        <div class="recipe-count">56 Recipes</div>
+     
        </div>
       </div>
     <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'pasta',}">  
       <div class="wrap-element"> 
       <span class="material-icons"> dinner_dining </span>
        <div class="icon-name">Pasta</div>
-       <div class="recipe-count">56 Recipes</div>
+      
        </div>
       </div>
   </div>
@@ -75,7 +75,7 @@
           spa
           </span>
        <div class="icon-name">Vegan</div>
-       <div class="recipe-count">56 Recipes</div>
+ 
        </div>
       </div>
       <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'breakfast',}">  
@@ -84,7 +84,7 @@
             bakery_dining
             </span>
          <div class="icon-name">Breakfast</div>
-         <div class="recipe-count">56 Recipes</div>
+
          </div>
         </div>
         <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'shakes',}">  
@@ -93,7 +93,7 @@
               free_breakfast
               </span>
            <div class="icon-name">Shakes</div>
-           <div class="recipe-count">56 Recipes</div>
+
            </div>
           </div>
         <div class="square" [routerLink]="['/foodItems']" [queryParams]="{ category: 'healthy',}">  
@@ -102,7 +102,7 @@
               food_bank
               </span>
            <div class="icon-name">Healthy</div>
-           <div class="recipe-count">56 Recipes</div>
+
            </div>
           </div>
     
@@ -111,95 +111,6 @@
 
 <!-- hover -->
 
-
-
-<!-- <div class="card-container container"> 
-  <h1 class="title">FAVORITES </h1>
-  <div *ngIf="favorite" >
-  <div class="row">
-  <div class="card-hover col-md-4" *ngFor="let recipe of favoriteRecipes.slice(0, 3)" >
-   <div class="card-hover__content">
-     <h3 class="card-hover__title">
-       {{recipe.title}}
-     </h3>
-     <p class="card-hover__text">{{sanitizeInstructions(recipe.instructions) | slice:0:100}}...</p>
-     <a  (click)="getRecipeId(recipe.id)" class="card-hover__link">
-       <span>view more</span>
-       <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-       </svg>       
-     </a>
-   </div>
-   <div class="card-hover__extra">
-
-   </div>
-   <img *ngIf="recipe.image" [src]="recipe.image"  alt="{{ recipe.title }}">
-   <img *ngIf="!recipe.image" src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"  alt="{{ recipe.title }}">
- </div>
-</div>
-
-<div> 
-<h3 class="titles" [routerLink]="['/foodItems']" [queryParams]="{ category: 'favourite-recipes' }">
-  view all favorites
-  <svg fill="none" viewBox="0 0 16 16" width="16" height="13" stroke-width="1.5" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M8 2l6 6-6 6M2 8h12"></path>
-  </svg>
-</h3>
-</div>
-</div>
-<div *ngIf="!this.favorite" >
- 
-  <p>No Favorite Recipes</p>
-</div>
-
-</div> -->
-
-
-
-<!--  
-
-/////
- <div class="card-container container"> 
-  <h1 class="title">FAVORITES </h1>
-  <div *ngIf="favorite" >
-  <div class="row">
-  <div class="card-hover col-md-4" *ngFor="let recipe of favoriteRecipes.slice(0, 3)" >
-   <div class="card-hover__content">
-     <h3 class="card-hover__title">
-       {{recipe.title}}
-     </h3>
-     <p class="card-hover__text">{{sanitizeInstructions(recipe.instructions) | slice:0:100}}...</p>
-     <a  (click)="getRecipeId(recipe.id)" class="card-hover__link">
-       <span>view more</span>
-       <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-       </svg>       
-     </a>
-   </div>
-   <div class="card-hover__extra">
-
-   </div>
-   <img *ngIf="recipe.image" [src]="recipe.image"  alt="{{ recipe.title }}">
-   <img *ngIf="!recipe.image" src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60"  alt="{{ recipe.title }}">
- </div>
-</div>
-
-    <div  *ngIf="favorite else noFavorites">
-      <h3 class="titles" [routerLink]="['/foodItems']" [queryParams]="{ category: 'favourite-recipes' }">
-        view all favorites
-        <svg fill="none" viewBox="0 0 16 16" width="16" height="13" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 2l6 6-6 6M2 8h12"></path>
-        </svg>
-      </h3>
-      
-    </div>
-   
-    <ng-template #noFavorites>
-        <p>No Favorite Recipes</p>
-    </ng-template>
-
-</div>
- -->
   <h1 class="title">FAVORITES </h1>
 <div class="card-container container"> 
  
