@@ -10,7 +10,6 @@ export class ErrorDialogComponent {
   errorMessage: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log('DATA in EROR DIALOG', data.message);
     this.errorMessage = data.message;
   }
 }

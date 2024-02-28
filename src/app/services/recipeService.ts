@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { RecipeModel } from '../_models/recipeModel';
+import { RecipeModel } from '../models/recipeModel';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -26,7 +26,7 @@ export class recipeService {
     return this.http.get<RecipeModel>(url);
   }
   getRandomRecipes(numberOfRecipes: number): Observable<RecipeModel[]> {
-    const url = `https://api.spoonacular.com/recipes/random?apiKey=5aabdf9ebc6846b590b4cea0b46247fc&number=${numberOfRecipes}`;
+    const url = `${this.apiUrl}/random?apiKey=5aabdf9ebc6846b590b4cea0b46247fc&number=${numberOfRecipes}`;
     return this.http
       .get<{ recipes: RecipeModel[] }>(url)
       .pipe(map((response) => response.recipes));
@@ -72,7 +72,6 @@ export class recipeService {
 
   setDate(newDate: string) {
     this.dateSubject.next(newDate);
-    console.log('newDate', newDate);
   }
 
   getDate(): Observable<string> {
@@ -94,13 +93,12 @@ export class recipeService {
     httpParams = httpParams.append('apiKey', this.apiKey);
 
     const apiUrlWithParams = `${this.apiSearchUrl}${httpParams.toString()}`;
-    console.log('apiUrlWithParams', apiUrlWithParams);
+
     return this.http.get<any>(apiUrlWithParams);
   }
 
   addToFavorites(recipe: RecipeModel) {
     if (recipe) {
-      console.log('IS FAVORITED', recipe.isFavorite);
       recipe.isFavorite = !recipe.isFavorite;
       if (recipe.isFavorite) {
         ('test');

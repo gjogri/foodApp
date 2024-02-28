@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RecipeModel } from 'src/app/_models/recipeModel';
+import { RecipeModel } from 'src/app/models/recipeModel';
 import { recipeService } from 'src/app/services/recipeService';
 
 @Component({
@@ -30,7 +30,7 @@ export class ComparableProductsComponent implements OnInit {
   submitForm() {
     if (this.myForm.valid) {
       this.recipes.splice(0, this.recipes.length);
-      console.log('LENGHR', this.recipes.length);
+
       this.category = this.myForm.value.query;
     }
     const params: any = { ...this.myForm.value };
@@ -52,7 +52,6 @@ export class ComparableProductsComponent implements OnInit {
           recipes.push(singleRecipe);
         });
         this.allRecipes = recipes;
-        console.log(' ALL LENGHR', this.allRecipes.length);
       },
       (error) => {
         console.error('Error fetching recipe:', error);

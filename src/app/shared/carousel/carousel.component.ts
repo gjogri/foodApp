@@ -9,7 +9,6 @@ export class CarouselComponent implements OnInit {
   carouselItems: any[] = [];
 
   ngOnInit(): void {
-    console.log('CAROUSEL');
     this.carouselItems = [
       {
         src: 'https://img.freepik.com/free-vector/flat-international-tea-day-background_23-2149346995.jpg',
@@ -28,7 +27,6 @@ export class CarouselComponent implements OnInit {
         alt: 'Image 1',
       },
     ];
-    console.log('this', this.carouselItems);
   }
 
   customOptions: any = {

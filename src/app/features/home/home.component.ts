@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipeModel } from 'src/app/_models/recipeModel';
+import { RecipeModel } from 'src/app/models/recipeModel';
 import { recipeService } from 'src/app/services/recipeService';
 
 @Component({

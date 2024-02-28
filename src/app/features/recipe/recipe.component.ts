@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipeModel } from 'src/app/_models/recipeModel';
+import { RecipeModel } from 'src/app/models/recipeModel';
 import { Location } from '@angular/common';
 import { recipeService } from 'src/app/services/recipeService';
 
@@ -47,7 +47,6 @@ export class RecipeComponent implements OnInit {
       if (favoritesData) {
         favoritesList = JSON.parse(favoritesData);
         if (favoritesList.includes(this.currentId)) {
-          console.log(this.currentId);
           this.recipe.isFavorite = true;
           this.isIdPresent = true;
         } else {
@@ -77,7 +76,7 @@ export class RecipeComponent implements OnInit {
   addToFavorites() {
     if (this.recipe && !this.isIdPresent) {
       this.recipeService.addToFavorites(this.recipe);
-      console.log('test');
+
       this.isIdPresent = false;
     } else if (this.recipe && this.isIdPresent) {
       this.recipeService.removeFavoritesFromLocalStorage(this.recipe.id);

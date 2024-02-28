@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { chartData } from 'src/app/_models/chartData';
-import { Items } from 'src/app/_models/items';
-import { Nutrient } from 'src/app/_models/nutrient';
+import { chartData } from 'src/app/models/chartData';
+import { Items } from 'src/app/models/items';
+import { Nutrient } from 'src/app/models/nutrient';
 import { recipeService } from 'src/app/services/recipeService';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
