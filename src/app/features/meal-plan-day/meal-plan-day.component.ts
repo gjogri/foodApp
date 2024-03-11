@@ -6,37 +6,25 @@ import { Nutrient } from 'src/app/models/nutrient';
 import { recipeService } from 'src/app/services/recipeService';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
+import { RecipeModel } from 'src/app/models/recipeModel';
+import { MatChipListboxChange } from '@angular/material/chips';
 @Component({
   selector: 'app-meal-plan-day',
   templateUrl: './meal-plan-day.component.html',
   styleUrls: ['./meal-plan-day.component.scss'],
 })
 export class MealPlanDayComponent implements OnInit {
-  nutrientSummary: Nutrient[] = [];
+  recipes: RecipeModel[] = [];
+  initialDelay = 50;
+  filteredRecipes: RecipeModel[] = [];
+  headingText: string = 'All Recipes';
+  selectedOption = '';
+  receivedData: any;
   selectedDate: string = '';
-  selectedDateFromParams: string = '';
   isSelectedDate = false;
-  breakfastItems: Items[] = [];
-  lunchItems: Items[] = [];
-  dinnerItems: Items[] = [];
-  chartDataSummary: chartData[] = [];
-  chartDataBreakfast: chartData[] = [];
-  chartDataLunch: chartData[] = [];
-  chartDataDinner: chartData[] = [];
+  selectedChartData: chartData[] = [];
   macroNutrient = ['Carbohydrates', 'Fat', 'Protein', 'Calories'];
-  selectedChartData: { name: string; value: number }[] = [];
-  xAxisLabel = 'gr';
-  yAxisLabel = 'Macro Nutrition';
   todayDate: string = '';
-  selectedAllMeal: boolean = true;
-  isSelectedBreakfast: boolean = false;
-  isSelectedLunch: boolean = false;
-  isSelectedDinner: boolean = false;
-  imageUrlFallback = 'https://eastinthewest.co.uk/images/mob-index-img.jpg';
-  noneSelected =
-    !this.isSelectedBreakfast &&
-    !this.isSelectedLunch &&
-    !this.isSelectedDinner;
 
   constructor(
     private recipeService: recipeService,
@@ -49,59 +37,53 @@ export class MealPlanDayComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.todayDate = params['date'];
     });
+
     this.getRecipeOnDate(this.todayDate);
+    if (this.todayDate) {
+      this.filteredRecipes = this.recipes;
+    }
   }
 
   onDateSelected(event: any) {
     this.todayDate = event.value;
+
     this.getRecipeOnDate(this.todayDate);
+    if (this.todayDate) {
+      this.filteredRecipes = this.recipes;
+    }
   }
 
   getRecipeOnDate(date: string) {
-    this.breakfastItems = [];
-    this.lunchItems = [];
-    this.dinnerItems = [];
     this.updateQueryParams(date);
     this.recipeService.setDate(date);
     this.isSelectedDate = true;
-    this.updateSelectedChartData();
     this.getMealPlanDay();
     this.cdr.detectChanges();
   }
+
   getMealPlanDay() {
     if (this.todayDate) {
+      this.recipes = [];
       this.recipeService.getMealPlanDay(this.todayDate).subscribe(
         (data: any) => {
-          this.chartDataSummary = this.filterChartData(data.nutritionSummary);
+          this.receivedData = data;
+          this.selectedChartData = this.filterChartData(
+            this.receivedData.nutritionSummary
+          );
+          let currentDelay = this.initialDelay;
 
-          this.chartDataBreakfast = this.filterChartData(
-            data.nutritionSummaryBreakfast
-          );
-          this.chartDataLunch = this.filterChartData(
-            data.nutritionSummaryLunch
-          );
-          this.chartDataDinner = this.filterChartData(
-            data.nutritionSummaryDinner
-          );
-          this.updateSelectedChartData();
-          data.items.forEach((item: Items) => {
-            this.recipeService.getRecipeById(item.value.id).subscribe(
-              (recipe) => {
-                item.imageUrl = recipe.image;
-                item.value.preparationMinutes = recipe.readyInMinutes;
-              },
-              (error) => {
-                item.imageUrl = this.imageUrlFallback;
-              }
-            );
+          data.items.forEach((id: Items, index: number) => {
+            const itemId = parseInt(id.value.id);
 
-            if (item.slot === 1) {
-              this.breakfastItems.push(item);
-            } else if (item.slot === 2) {
-              this.lunchItems.push(item);
-            } else {
-              this.dinnerItems.push(item);
-            }
+            setTimeout(() => {
+              this.recipeService.getRecipeById(itemId).subscribe((recipe) => {
+                if (recipe) {
+                  recipe.slot = id.slot;
+                  this.recipes.push(recipe);
+                }
+              });
+            }, index * currentDelay);
+            currentDelay += this.initialDelay;
           });
         },
         (error: any) => {
@@ -124,20 +106,38 @@ export class MealPlanDayComponent implements OnInit {
     );
   }
 
-  toggleSelection(selectedMeal: string) {
-    if (selectedMeal === 'Breakfast') {
-      this.isSelectedBreakfast = !this.isSelectedBreakfast;
-    } else if (selectedMeal === 'Lunch') {
-      this.isSelectedLunch = !this.isSelectedLunch;
-    } else if (selectedMeal === 'Dinner') {
-      this.isSelectedDinner = !this.isSelectedDinner;
+  onChipSelectionChange(event: MatChipListboxChange): void {
+    this.selectedOption = event.source.value;
+
+    if (this.selectedOption === undefined) {
+      this.headingText = 'All Recipes';
+      this.filteredRecipes = this.recipes;
+    } else {
+      const selectedValue = event.source.value.value;
+      this.headingText = event.source.value.label;
+      this.filteredRecipes = this.recipes.filter(
+        (recipe) => recipe.slot === selectedValue
+      );
     }
 
-    this.selectedAllMeal =
-      !this.isSelectedDinner &&
-      !this.isSelectedLunch &&
-      !this.isSelectedBreakfast;
-    this.updateSelectedChartData();
+    let propertyName = '';
+    switch (event.source.value?.label) {
+      case 'Breakfast':
+        propertyName = 'nutritionSummaryBreakfast';
+        break;
+      case 'Lunch':
+        propertyName = 'nutritionSummaryLunch';
+        break;
+      case 'Dinner':
+        propertyName = 'nutritionSummaryDinner';
+        break;
+      default:
+        propertyName = 'nutritionSummary';
+        break;
+    }
+    this.selectedChartData = this.filterChartData(
+      this.receivedData[propertyName]
+    );
   }
 
   filterChartData(mealData: any): { name: string; value: number }[] {
@@ -149,19 +149,6 @@ export class MealPlanDayComponent implements OnInit {
         name: nutrient.name,
         value: nutrient.amount,
       }));
-  }
-
-  updateSelectedChartData() {
-    if (this.isSelectedBreakfast) {
-      this.selectedChartData = this.chartDataBreakfast;
-    } else if (this.isSelectedLunch) {
-      this.selectedChartData = this.chartDataLunch;
-    } else if (this.isSelectedDinner) {
-      this.selectedChartData = this.chartDataDinner;
-    } else if (this.noneSelected) {
-      this.selectedChartData = this.chartDataSummary;
-    }
-    this.cdr.detectChanges();
   }
 
   openErrorDialog(errorMessage: string): void {

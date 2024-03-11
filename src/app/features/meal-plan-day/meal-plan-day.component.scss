@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
 .background-img {
 
   background: #fff;
@@ -58,29 +58,7 @@
 
 
   
-  .custom-input {
-    width: 80%; 
-    max-width: 300px; 
-    padding: 10px; 
-    margin: 0 auto; 
-    display: block; 
-    @media (min-width: 1268px) {
-        margin-bottom: 350px; 
-      }
-    @media (min-width: 968px)  and (max-width:1268px){
-        margin-bottom: 350px; 
-      }
-    @media (min-width: 768px) and (max-width: 968px) {
-        margin-bottom: 450px; 
-      }
 
-      @media (min-width: 576px)  and (max-width:768px){
-        margin-bottom: 160px;
-      }
-      @media (max-width: 576px) {
-        margin-bottom: 250px; 
-      }
-  }
   
   input[type="date"] {
     font-family: Roboto, sans-serif;
@@ -90,29 +68,19 @@
     
   }
  
- 
-  
- 
-  
-  .recipe-title {
-    width: 100%;
-  text-align: center;
-  }
-
   .mat-grid-title {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .meal-type {
-    margin-bottom: 10px; 
-  }
+
 .mat-chip-option{
   padding: 20px;
   flex-direction: column;
   align-items: center;
 
 }
+
 .charts-margins{
  font-size: x-large;
  font-weight: 600;
@@ -133,10 +101,17 @@
   font-weight: 500;
 }
 
-// .background-content{
-//   background-color: #dde6ce!important;
-// }
+.title {
+  margin-top:50px;
+  font-size: 56px;
+  font-weight: bolder;
+  text-align: center;
+  font-family: 'Moirai One', sans-serif;
+}
+
+
 // //MAT CHIP
+
 .centered-chips{
   display: flex;
   justify-content: center;
@@ -145,203 +120,19 @@
   // padding-bottom: 100px;
   
 }
-.mat-chip-option{
-  padding: 20px;
-  margin: 0px 10px;
-  color:blue;
-}
+
 
 
 ///// NEW RECIPE
 /// 
 
-.mat-grid-list {
-  margin-bottom: 20px !important;
-  // background-color: #f7f4ee;
-  padding-top: 100px;
 
- 
-}
-.title-container {
-  position: relative
-}
 
-.recipe-cards {
+
+.recipe-card-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 }
-.recipe-card {
-
-  border-radius: 15px;
-  display: flex;
-  margin-right: 10px;
-
-  &__cover {
-    cursor: pointer;
-    background:#EEE;
-    border-radius: 15px;    
-    position: relative;
-    height: 300px;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 0;
-    transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
-
-    &-details {
-      z-index: 20;
-      color: white;
-      height: 100%;
-      width: 100%;
-      position: relative;
-    }
-  }
-
-  &__img {
-    display: flex;
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.3s ease-in;
-    }
-  }
- 
-  &__cover:hover &__img {
-    img {
-      transform: scale(1.1);
-    }
-  }
-  &__servings,
-  &__duration {
-    background: rgba(52, 73, 94, 0.8);
-    width: 60px;
-    height: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin: 10px;
-    text-align: center;
-    font-size: 0.4em;
-    transform: translatex(-120%);
-    transition: transform 0.3s ease-in;
-    text-transform: uppercase;
-  }
-  &__cover:hover &__servings,
-  &__cover:hover &__duration {
-    transform: translatex(0);
-  }
-  &__servings--show,
-  &__duration--show {
-    transform: translatex(0);
-  }
-  &__servings span,
-  &__duration span {
-    display: block;
-    font-size: 3em;
-  }
-  &__info {
-    position: absolute;
-    bottom: 0;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 25%,
-      rgba(0, 0, 0, 0.6) 100%
-    );
-    padding: 0 20px;
-    transition: transform 0.3s ease-in;
-    transform: translateY(45%);
-  }
-  &__cover:hover &__info {
-    transform: translateY(0%);
-  }
-  &__info--show {
-    transform: translateY(0%);
-  }
-  &
-  .recipe-card__title h1 {
-    opacity: 0; 
-    transition: opacity 0.3s ease-in-out; 
-  }
-  .recipe-card__cover:hover .recipe-card__title h1 {
-    opacity: 1; 
-  }
-}
-
-.preparation-steps{
-  counter-reset: section;
-}
-
-.preparation-steps li{
-  margin-left:10px;
-  padding-left:30px;
-  position:relative;
-  border-left:3px solid rgba(52, 73, 94, .5);
-}
-.preparation-steps li::before{
-  content:'1';
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  left:-21px;
-  background: rgba(52, 73, 94, 1);
-  color:white;
-  border-radius:50%;
-  height:2em;
-  width:2em;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:4px solid #F5F5F5;
-  counter-increment: section;
-  content: counter(section);
-}
 
 
-@media screen and (max-width: 640px) {
-  .recipe-card {
-    flex-direction: column;
-    &__cover {
-      height: 50vh;
-      width: 100vw;
-      border-radius: 0;
-      box-shadow: none;
-    }
-    &__cover--open,
-    &__content-container--open {
-      transform: translatex(0);
-    }
-    &__content-container {
-      position: relative;
-      height: 50vh;
-      width: 100vw;
-      border-radius:0;
-      margin-top:0;
-    }
-    &__content{
-      height:40vh;
-      
-    }
-    &__info {
-      transform: translateY(0);
-    }
-    &__duration {
-      transform: translatex(0);
-    }
-    &__servings {
-      transform: translatex(0);
-    }
-  }
-}
+
